@@ -19,8 +19,7 @@
   justify-content: space-between;
   text-align: center;
   text-shadow:0 .05rem .02rem rgba(0,0,0, .5);
-  margin-top: .7rem;
-  margin-bottom: auto;
+  margin: .7rem .5rem auto 0rem;
 }
 
 .Name {

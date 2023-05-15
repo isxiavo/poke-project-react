@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./List.css";
 import PokeUnit from "../poke-unit/PokeUnit";
 
-export default function List() {
-  
+export default function List(props) {
   const [offset, setOffset] = useState(0);
   const [pokemons, setPokemons] = useState([]);
   const limit = 20;
@@ -14,37 +13,39 @@ export default function List() {
       .then((response) => response.json())
       .then((jsonBody) => jsonBody.results)
       .then((pokemonList) =>
-        pokemonList.map((pokeRaw, index, array) =>
-          fetch(pokeRaw.url)
-            .then((response) => response.json())
-            .then((data) => {
-              setPokemons((old) => [...old, data]);
-            })
-            .catch((error) => console.log(error))
+        pokemonList.map((pokemon) =>
+          fetch(pokemon.url).then((response) => response.json())
         )
       )
-      .catch((error) => console.log(error))
+      .then((data) => Promise.all(data))
+      .then((pokemonsDetails) => pokemonsDetails.map((unit) => setPokemons((old) => [...old, unit])))
+      .catch((error) => console.log(error));
   },[url]);
 
-  function idSort( a, b ) {
-    if ( a.id < b.id ){
+  /*function idSort(a, b) {
+    if (a.id < b.id) {
       return -1;
     }
-    if ( a.id > b.id ){
+    if (a.id > b.id) {
       return 1;
     }
     return 0;
   }
+  pokemons.sort(idSort);
+  */
   
-  pokemons.sort(idSort)
-  //console.log(pokemons)
+  function morePokemon () {
+    setOffset((old) => old + 20)
+  }
 
   return (
-    <ol className="OList">
-      {pokemons.length > 0 && pokemons.map((poke, index, array) => (
-        <PokeUnit data={poke} key={poke.id}></PokeUnit>
-      ))}
-      <button onClick={() => setOffset(() => offset + 20)}></button>
-    </ol>
+    <div  className="SimpleList">
+      <ol className="OList">
+        {pokemons.map((poke, index, array) => (
+          <PokeUnit data={poke} key={poke.id}></PokeUnit>
+        ))}
+      </ol>
+      <button className="LoadButton" onClick={morePokemon}>▼</button>
+    </div>
   );
 }

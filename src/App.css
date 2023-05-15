@@ -1,27 +1,7 @@
-.App {
-
-}
 
 @media  screen and (min-width: 992px) {
   .App{
     max-width: 992px;
     margin: 0 auto;
   }
-}
-
-.Title {
-  margin-left: 1rem;
-}
-
-.Return {
-  align-self: center;
-  
-  font-size: 40px;
-  margin: 0rem 1rem 0rem 2.5rem;
-}
-
-.Filter {
-  align-self: center;
-  font-size: 30px;
-  margin: 0rem 2rem 0rem auto;
 }
