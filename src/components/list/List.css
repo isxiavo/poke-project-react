@@ -1,0 +1,20 @@
+.OList {
+    padding: .25rem;
+    display: grid;
+    flex-direction: row;
+    list-style-type: none;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(231, 231, 231);
+}
+
+@media  screen and (min-width: 512px) {
+    .OList{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media  screen and (min-width: 768px) {
+    .OList{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

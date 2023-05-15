@@ -1,0 +1,13 @@
+.Tag {
+    text-transform: capitalize;
+    text-align: center;
+    text-shadow:0 .05rem .12rem rgba(0,0,0, .5);
+    border-radius: .4rem;
+    box-shadow: 0 .08rem .1rem rgba(0,0,0);
+    padding: .2rem;
+    margin: 0rem 0rem .3rem 0rem;
+    width: 2.9rem;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgb(255, 255, 255);
+}
