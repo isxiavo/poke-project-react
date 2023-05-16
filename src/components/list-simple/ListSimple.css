@@ -1,0 +1,41 @@
+.SimpleList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.OList {
+  padding: 0.25rem;
+  display: grid;
+  flex-direction: row;
+  list-style-type: none;
+  grid-template-columns: 1fr 1fr;
+  background-color: rgb(206, 206, 206);
+}
+
+.LoadButton {
+  border-style: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0);
+  color: white;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0);
+  width: 80%;
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: lightseagreen;
+}
+
+@media screen and (min-width: 512px) {
+  .OList {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .OList {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

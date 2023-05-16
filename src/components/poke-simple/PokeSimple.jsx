@@ -1,7 +1,8 @@
-import "./PokeUnit.css";
+import React from "react";
+import "./PokeSimple.css";
 import TypeTag from "../type-tag/TypeTag";
 
-export default function PokeUnit(props) {
+export default function PokeSimple(props) {
 
   const data = props.data
 

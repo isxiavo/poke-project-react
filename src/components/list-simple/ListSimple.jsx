@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./List.css";
-import PokeUnit from "../poke-unit/PokeUnit";
+import "./ListSimple.css";
+import PokeSimple from "../poke-simple/PokeSimple";
 
-export default function List(props) {
+export default function ListSimple(props) {
   const [offset, setOffset] = useState(0);
   const [pokemons, setPokemons] = useState([]);
   const limit = 20;
@@ -35,14 +35,14 @@ export default function List(props) {
   */
   
   function morePokemon () {
-    setOffset((old) => old + 20)
+    setOffset((old) => old + limit)
   }
 
   return (
     <div  className="SimpleList">
       <ol className="OList">
         {pokemons.map((poke, index, array) => (
-          <PokeUnit data={poke} key={poke.id}></PokeUnit>
+          <PokeSimple data={poke} key={poke.id}></PokeSimple>
         ))}
       </ol>
       <button className="LoadButton" onClick={morePokemon}>▼</button>
