@@ -1,18 +1,11 @@
 .DetailsList {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-.DetailsList .OList {
-  padding: 0.25rem;
-  display: grid;
-  flex-direction: row;
-  list-style-type: none;
-  grid-template-columns: 1fr 1fr;
+.DetailsList .TableList {
   background-color: rgb(206, 206, 206);
 }
 
@@ -29,13 +22,11 @@
 }
 
 @media screen and (min-width: 512px) {
-    .DetailsList .OList {
-    grid-template-columns: 1fr 1fr 1fr;
+  .DetailsList .DetailList {
   }
 }
 
 @media screen and (min-width: 768px) {
-    .DetailsList .OList {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  .DetailsList .DetailList {
   }
 }

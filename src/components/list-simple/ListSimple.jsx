@@ -1,26 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ListSimple.css";
 import PokeSimple from "../poke-simple/PokeSimple";
 
-export default function ListSimple(props) {
-  const [offset, setOffset] = useState(0);
-  const [pokemons, setPokemons] = useState([]);
-  const limit = 20;
-  const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+const delay = () => new Promise(
+  resolve => setTimeout(resolve, 1000)
+);
 
-  useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((jsonBody) => jsonBody.results)
-      .then((pokemonList) =>
-        pokemonList.map((pokemon) =>
-          fetch(pokemon.url).then((response) => response.json())
-        )
-      )
-      .then((data) => Promise.all(data))
-      .then((pokemonsDetails) => pokemonsDetails.map((unit) => setPokemons((old) => [...old, unit])))
-      .catch((error) => console.log(error));
-  },[url]);
+export default function ListSimple(props) {
+  const [offset, setOffset] = useState(10);
+  const pokemonsList = props.pokemonsList;
+  const limit = props.limitList;
 
   /*function idSort(a, b) {
     if (a.id < b.id) {
@@ -33,19 +22,25 @@ export default function ListSimple(props) {
   }
   pokemons.sort(idSort);
   */
-  
-  function morePokemon () {
-    setOffset((old) => old + limit)
+
+  function morePokemons() {
+    setOffset((old) => old + limit);
   }
 
   return (
-    <div  className="SimpleList">
+    <div className="SimpleList">
       <ol className="OList">
-        {pokemons.map((poke, index, array) => (
-          <PokeSimple data={poke} key={poke.id}></PokeSimple>
-        ))}
+        {pokemonsList.map((poke, index, array) => {
+          if (index < offset) {
+            return <PokeSimple data={poke} key={poke.id}></PokeSimple>;
+          }else {
+            return null
+          }
+        })}
       </ol>
-      <button className="LoadButton" onClick={morePokemon}>▼</button>
+      <button className="LoadButton" onClick={morePokemons}>
+        ▼
+      </button>
     </div>
   );
 }

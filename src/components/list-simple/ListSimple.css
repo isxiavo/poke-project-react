@@ -7,7 +7,7 @@
   height: 100%;
 }
 
-.OList {
+.SimpleList .OList {
   padding: 0.25rem;
   display: grid;
   flex-direction: row;
@@ -16,7 +16,7 @@
   background-color: rgb(206, 206, 206);
 }
 
-.LoadButton {
+.SimpleList .LoadButton {
   border-style: none;
   border-radius: 1rem;
   box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0);
@@ -29,13 +29,13 @@
 }
 
 @media screen and (min-width: 512px) {
-  .OList {
+  .SimpleList .OList {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .OList {
+  .SimpleList .OList {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

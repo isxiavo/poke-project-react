@@ -1,106 +1,11 @@
-.Unit {
-  padding: .1rem .7rem;
-  margin: .5rem;
-  border-radius: 1rem;
-  box-shadow: 0 .08rem .2rem rgba(0,0,0);
-  max-width: 90%;
-  min-height: 90px;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  justify-content: center;
+.PokeDetail {
 }
 
-.Text{
-  display: flex;
-  text-transform: capitalize;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  text-shadow:0 .05rem .02rem rgba(0,0,0, .5);
-  margin: .7rem .5rem auto 0rem;
+.PokeDetail .Thumbnail {
+  display: block;
+  width: 10%;
 }
 
-.Name {
-  align-self: flex-start;
-  font-size: .9rem;
-  font-weight: bold;
-  color: white;
+.PokeDetail .Thumbnail img {
+  width: 100%;
 }
-
-.Number {
-  margin-left: auto;
-  font-size: .9rem;
-  font-weight: bold;
-  color: black;
-  opacity: .4;
-}
-
-.Details {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: auto;
-}
-
-.TypeList {
-  padding: 0.2rem;
-  margin: .2rem 0;
-  list-style: none;
-}
-
-.Thumbnail{
-  display: flex;
-  min-width: 60%;
-  padding-right: .3rem;
-}
-
-.Thumbnail img {
-  max-width: 70%;
-  max-height: 100%;
-  margin-left: auto;
-}
-
-/* .colors  {
-  normal:rgb(168, 168, 120);
-  fire: rgb(240, 128, 48);
-  water: rgb(104, 144, 240);
-  grass:rgb(120, 200, 80);
-  electric:rgb(237, 199, 54);
-  ice:rgb(152, 216, 216);
-  fighting:rgb(192, 48, 40);
-  poison:rgb(160, 64, 160);
-  ground:rgb(215, 185, 105);
-  flying:rgb(168, 144, 240);
-  psychic:rgb(248, 88, 136);
-  bug:rgb(168, 184, 32);
-  rock:rgb(181, 158, 59);
-  ghost:rgb(112, 88, 152);
-  dark:rgb(112, 88, 72);
-  dragon:rgb(112, 56, 248);
-  steel:rgb(184, 184, 208);
-  fairy:rgb(223, 173, 177)
-} */
-
-/* .colors  {
-  normal:#a8a878;
-  fire: #f08030;
-  water: #6890f0;
-  grass:#78c850;
-  electric:#edc736;
-  ice:#98d8d8;
-  fighting:#c03028;
-  poison:#a040a0;
-  ground:#d7b969;
-  flying:#a890f0;
-  psychic:#f85888;
-  bug:#a8b820;
-  rock:#b59e3b;
-  ghost:#705898;
-  dark:#705848;
-  dragon:#7038f8;
-  steel:#b8b8d0;
-  fairy:#dfadb1
-} */

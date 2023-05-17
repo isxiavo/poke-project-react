@@ -1,4 +1,4 @@
-.Unit {
+.PokeSimple {
   padding: .1rem .7rem;
   margin: .5rem;
   border-radius: 1rem;
@@ -12,7 +12,7 @@
   justify-content: center;
 }
 
-.Unit .Text{
+.PokeSimple .Text{
   display: flex;
   text-transform: capitalize;
   align-items: center;
@@ -22,14 +22,14 @@
   margin: .7rem .5rem auto 0rem;
 }
 
-.Unit .Name {
+.PokeSimple .Name {
   align-self: flex-start;
   font-size: .9rem;
   font-weight: bold;
   color: white;
 }
 
-.Unit .Number {
+.PokeSimple .Number {
   margin-left: auto;
   font-size: .9rem;
   font-weight: bold;
@@ -37,7 +37,7 @@
   opacity: .4;
 }
 
-.Unit .Details {
+.PokeSimple .Details {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -45,19 +45,19 @@
   margin-bottom: auto;
 }
 
-.Unit .TypeList {
+.PokeSimple .TypeList {
   padding: 0.2rem;
   margin: .2rem 0;
   list-style: none;
 }
 
-.Unit .Thumbnail{
+.PokeSimple .Thumbnail{
   display: flex;
   min-width: 60%;
   padding-right: .3rem;
 }
 
-.Unit .Thumbnail img {
+.PokeSimple .Thumbnail img {
   max-width: 70%;
   max-height: 100%;
   margin-left: auto;

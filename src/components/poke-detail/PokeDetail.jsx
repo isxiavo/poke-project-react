@@ -53,28 +53,12 @@ export default function PokeDetail(props) {
   }
 
   return (
-    <li className="Unit" style={style}>
-      <div className="Text">
-        <span className="Name">{data.name}</span>
-        <span className="Number">#{data.id}</span>
-      </div>
-      <div className="Details">
-        <div>
-          <ol className="TypeList">
-            {data.types.map((type) => (
-              <li>
-                
-              </li>
-            ))}
-          </ol>
-        </div>
-        <div className="Thumbnail">
-          <img
-            src={(checkImg(imgs.official))}
-            alt="thumb"
-          />
-        </div>
-      </div>
-    </li>
+    <tr className="PokeDetail">
+      <td><div className="Thumbnail"><img src={checkImg(imgs.official)} /></div></td>
+      <td>{data.id}</td>
+      <td>{data.name}</td>
+      <td>{data.height}</td>
+      <td>{data.weigth}</td>
+    </tr>
   );
 }

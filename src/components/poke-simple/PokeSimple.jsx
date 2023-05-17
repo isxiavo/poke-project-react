@@ -54,7 +54,7 @@ export default function PokeSimple(props) {
   }
 
   return (
-    <li className="Unit" style={style}>
+    <li className="PokeSimple" style={style}>
       <div className="Text">
         <span className="Name">{data.name}</span>
         <span className="Number">#{data.id}</span>
