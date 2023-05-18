@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./ListSimple.css";
 import PokeSimple from "../poke-simple/PokeSimple";
-
-const delay = () => new Promise(
-  resolve => setTimeout(resolve, 1000)
-);
 
 export default function ListSimple(props) {
   const [offset, setOffset] = useState(10);

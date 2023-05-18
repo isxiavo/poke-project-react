@@ -1,11 +1,14 @@
-.PokeDetail {
-}
-
 .PokeDetail .Thumbnail {
-  display: block;
-  width: 10%;
+  width: 50%;
 }
 
 .PokeDetail .Thumbnail img {
   width: 100%;
+}
+
+.PokeDetail .tdImg {
+  width: 1rem;
+}
+.PokeDetail{
+ 
 }

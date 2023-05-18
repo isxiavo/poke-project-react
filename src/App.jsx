@@ -23,7 +23,8 @@ function App() {
       return <span>LOADING.................</span>
     }
     else{
-      return listState ? (<ListSimple pokemonsList={pokemons} limitList={10}/>) : (<ListDetails/>)
+      return listState ? (<ListSimple pokemonsList={pokemons} limitList={10}/>) : 
+      (<ListDetails pokemonsList={pokemons} limitList={10}/>)
     }
   }
 
@@ -40,10 +41,9 @@ function App() {
     .then((pokemonsDetails) =>
       pokemonsDetails.map((unit) => setPokemons((old) => [...old, unit]))
     )
-    .then(()=>{debugger})
     .then(isLoading = false)
     .catch((error) => console.log(error))
-  },[])
+  },[url])
 
   return (
     <div className="App">
