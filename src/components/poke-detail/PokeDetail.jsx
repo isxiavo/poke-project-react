@@ -53,8 +53,8 @@ export default function PokeDetail(props) {
   }
 
   return (
-    <tr className="PokeDetail">
-      <td className="tdImg"><div className="Thumbnail"><img src={checkImg(imgs.official)} /></div></td>
+    <tr className="pokeDetail">
+      <td className="tdImg"><div className="thumbnail"><img src={checkImg(imgs.official)} /></div></td>
       <td>{data.id}</td>
       <td>{data.name}</td>
       <td>{data.height}</td>

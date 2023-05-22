@@ -24,14 +24,14 @@ export default function ListDetails(props) {
   }
 
   return (
-    <div className="DetailsList">
-      <table className="TableList">
+    <div className="detailsList">
+      <table className="tableList">
         <tr>
-          <th>Thumb</th>
-          <th>Number</th>
-          <th>Name</th>
-          <th>Height</th>
-          <th>Weight</th>
+          <th></th>
+          <th><button>Number</button></th>
+          <th><button>Name</button></th>
+          <th><button>Height</button></th>
+          <th><button>Weight</button></th>
           <th></th>
         </tr>
         {pokemonsList.map((poke, index, array) => {
@@ -42,7 +42,7 @@ export default function ListDetails(props) {
           }
         })}
       </table>
-      <button className="LoadButton" onClick={morePokemons}>
+      <button className="loadButton" onClick={morePokemons}>
         ▼
       </button>
     </div>

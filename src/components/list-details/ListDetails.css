@@ -1,4 +1,4 @@
-.DetailsList {
+.detailsList {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,16 +6,21 @@
   justify-content: center;
 }
 
-.DetailsList td{
-  border-style: solid;
+.detailsList td{
+  margin: 0;
+  border: .1rem solid gray;
+}
+.detailsList button {
+  margin: 0;
+  width: 100%;
 }
 
-.DetailsList .TableList {
+.detailsList .tableList {
   width: 100%;
   background-color: rgb(206, 206, 206);
 }
 
-.DetailsList .LoadButton {
+.detailsList .loadButton {
   border-style: none;
   border-radius: 1rem;
   box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0);
@@ -28,11 +33,11 @@
 }
 
 /* @media screen and (min-width: 512px) {
-  .DetailsList .DetailList {
+  .detailsList .detailList {
   }
 }
 
 @media screen and (min-width: 768px) {
-  .DetailsList .DetailList {
+  .detailsList .detailList {
   }
 } */
