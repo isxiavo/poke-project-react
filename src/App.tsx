@@ -4,19 +4,17 @@ import Header from "./components/header/Header";
 import ListSimple from "./components/list-simple/ListSimple";
 import ListDetails from "./components/list-details/ListDetails";
 import { Pokemon } from "./model/pokemon";
+import { fetchPokemons } from "./services/fetchPokemons.service";
 
 let isLoading: boolean = true;
 
 function App() {
-  const [listState, setListState] = useState(true); // true simples / false detalhes
+  const [listState, setListState] = useState(false); // false simples / true detalhes
   const [pokemons, setPokemons] = useState<Pokemon[]>([])
-  const limit = 1000;
-  const offset = 0;
-  const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
 
-
-  function changeList() {
+  const changeListState = () => {
     setListState((old) => (old = !old));
+    if(isLoading){isLoading = false}
   }
 
   function loadList() {
@@ -24,55 +22,19 @@ function App() {
       return <span>LOADING.................</span>
     }
     else{
-      return listState ? (<ListSimple pokemonsList={pokemons} limitList={10}/>) : 
-      (<ListDetails pokemonsList={pokemons} limitList={10}/>)
+      return listState ? (<ListSimple pokemonsList={pokemons} limitList={50}/>) : 
+      (<ListDetails pokemonsList={pokemons} limitList={50}/>)
     }
   }
 
   useEffect(() => {
-    fetch(url)
-    .then((response) => response.json())
-    .then((jsonBody) => jsonBody.results)
-    .then((pokemonList) =>
-
-      pokemonList.map((pokemon: any) =>
-        fetch(pokemon.url).then((response) => response.json())
-      )
-      
-    )
-    .then((data) => Promise.all(data))
-    .then((pokemonsDetails) =>
-
-      pokemonsDetails.map((unit) => setPokemons((old) => {
-
-        const newPokemon: Pokemon = {
-          id: unit.id,
-          name: unit.name,
-          height: unit.height,
-          weight: unit.weight,
-          sprites: {
-            front_default: unit.sprites.front_default,
-            dream_world: unit.sprites.other.dream_world.front_default,
-            official_artwork: unit.sprites.other['official-artwork'].front_default,
-            home: unit.sprites.other.home.front_default
-          },
-          types: unit.types,
-          stats: unit.stats,
-          moves: unit.moves
-        }
-
-        return [...old, newPokemon]
-      }))
-
-    )
-    .then(() => isLoading = false)
-    .catch((error) => console.log(error))
-  },[url])
+    setPokemons(() => fetchPokemons(changeListState))
+  },[])
 
   return (
     <div className="App">
       <Header />
-      <button onClick={changeList}></button>
+      <button onClick={changeListState}></button>
       <div>
         {loadList()}
       </div>

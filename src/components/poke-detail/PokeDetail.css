@@ -1,13 +1,10 @@
-.pokeDetail{
- 
-}
 
-.pokeDetail .tdImg {
+.tdImg {
   padding: 0;
   width: 1.5rem;
 }
 
-.pokeDetail .thumbnail {
+.thumbnail {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +13,21 @@
   overflow: hidden;
 }
 
-.pokeDetail .thumbnail img {
+.thumbnail img {
   width: 2.5rem;
+}
+
+.types {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.type-icon{
+  display: flex;
+  width: 2rem;
+}
+
+.type-icon img{
+  width: 100%;
 }

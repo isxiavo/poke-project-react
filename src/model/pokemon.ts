@@ -21,8 +21,7 @@ export type Pokemon = {
     url: string;
   }}[]
 
-  stats:{ stat: {
-    name: string;
-    value: number;
-  }}[]
+  stats: {
+    base_stat: number
+  }[]
 }

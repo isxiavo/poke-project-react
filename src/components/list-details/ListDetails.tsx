@@ -34,10 +34,15 @@ export default function ListDetails(props: Props) {
       <table className="tableList">
         <tr>
           <th></th>
-          <th><button>Number</button></th>
+          <th><button>#</button></th>
           <th><button>Name</button></th>
-          <th><button>Height</button></th>
-          <th><button>Weight</button></th>
+          <th><button>Type</button></th>
+          <th><button>HP</button></th>
+          <th><button>ATK</button></th>
+          <th><button>DEF</button></th>
+          <th><button>S.ATK</button></th>
+          <th><button>S.DEF</button></th>
+          <th><button>SPD</button></th>
           <th></th>
         </tr>
         {pokemonsList.map((poke: Pokemon, index: number) => {
