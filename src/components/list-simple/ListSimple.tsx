@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./ListSimple.css";
 import PokeSimple from "../poke-simple/PokeSimple";
+import { Pokemon } from "../../model/pokemon";
 
-export default function ListSimple(props) {
+type Props = {
+  pokemonsList: Pokemon[];
+  limitList: number;
+}
+
+export default function ListSimple(props: Props) {
   const [offset, setOffset] = useState(10);
   const pokemonsList = props.pokemonsList;
   const limit = props.limitList;
@@ -26,7 +32,7 @@ export default function ListSimple(props) {
   return (
     <div className="SimpleList">
       <ol className="OList">
-        {pokemonsList.map((poke, index, array) => {
+        {pokemonsList.map((poke: Pokemon, index: number) => {
           if (index < offset) {
             return <PokeSimple data={poke} key={poke.id}></PokeSimple>;
           }else {

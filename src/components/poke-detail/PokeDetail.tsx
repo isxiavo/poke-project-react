@@ -1,16 +1,19 @@
 import React from "react";
 import "./PokeDetail.css";
+import { Pokemon } from "../../model/pokemon";
 
-export default function PokeDetail(props) {
+type Props = {
+  data: Pokemon;
+}
 
-  const data = props.data
+export default function PokeDetail(props: Props) {
 
   const imgs = {
-    default : data.sprites.front_default,
-    dreamworld : data.sprites.other.dream_world.front_default,
-    official: data.sprites.other['official-artwork'].front_default,
-    home : data.sprites.other.home.front_default
-  }
+    default : props.data.sprites.front_default,
+    dreamworld : props.data.sprites.dream_world,
+    official: props.data.sprites.official_artwork,
+    home : props.data.sprites.home
+  };
 
   const colors = {
     normal:'rgb(168, 168, 120, 0.75)',
@@ -34,10 +37,10 @@ export default function PokeDetail(props) {
   }
 
   const style = {
-    backgroundColor: colors[data.types[0].type.name]|| "#000",
+    backgroundColor: colors[props.data.types[0].type.name as keyof typeof colors]|| "#000",
   };
 
-  function checkImg(img) {
+  function checkImg(img: string) {
     if (img) {
       return img
     }
@@ -53,12 +56,16 @@ export default function PokeDetail(props) {
   }
 
   return (
-    <tr className="pokeDetail">
-      <td className="tdImg"><div className="thumbnail"><img src={checkImg(imgs.official)} /></div></td>
-      <td>{data.id}</td>
-      <td>{data.name}</td>
-      <td>{data.height}</td>
-      <td>{data.weigth}</td>
+    <tr className="pokeDetail" style={style}>
+      <td className="tdImg">
+        <div className="thumbnail">
+          <img src={checkImg(imgs.official)} alt="thumb"/>
+        </div>
+      </td>
+      <td>{props.data.id}</td>
+      <td>{props.data.name}</td>
+      <td>{props.data.height}</td>
+      <td>{props.data.weight}</td>
     </tr>
   );
 }

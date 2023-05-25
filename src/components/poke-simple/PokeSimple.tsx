@@ -1,20 +1,23 @@
 import React from "react";
 import "./PokeSimple.css";
 import TypeTag from "../type-tag/TypeTag";
+import { Pokemon } from "../../model/pokemon";
 
-export default function PokeSimple(props) {
+type Props = {
+  data: Pokemon;
+}
 
-  const data = props.data
+export default function PokeSimple(props: Props) {
 
   const imgs = {
-    default : data.sprites.front_default,
-    dreamworld : data.sprites.other.dream_world.front_default,
-    official: data.sprites.other['official-artwork'].front_default,
-    home : data.sprites.other.home.front_default
+    default : props.data.sprites.front_default,
+    dreamworld : props.data.sprites.dream_world,
+    official: props.data.sprites.official_artwork,
+    home : props.data.sprites.home
   }
 
   const colors = {
-    normal:'rgb(168, 168, 120, 0.75)',
+    normal: 'rgb(168, 168, 120, 0.75)',
     fire: 'rgb(240, 128, 48, 0.75)',
     water: 'rgb(104, 144, 240, 0.75)',
     grass: 'rgb(120, 200, 80, 0.75)',
@@ -35,10 +38,10 @@ export default function PokeSimple(props) {
   }
 
   const style = {
-    backgroundColor: colors[data.types[0].type.name]|| "#000",
+    backgroundColor: colors[props.data.types[0].type.name as keyof typeof colors] || "#000",
   };
 
-  function checkImg(img) {
+  function checkImg(img: string) {
     if (img) {
       return img
     }
@@ -56,15 +59,15 @@ export default function PokeSimple(props) {
   return (
     <li className="PokeSimple" style={style}>
       <div className="Text">
-        <span className="Name">{data.name}</span>
-        <span className="Number">#{data.id}</span>
+        <span className="Name">{props.data.name}</span>
+        <span className="Number">#{props.data.id}</span>
       </div>
       <div className="Details">
         <div>
           <ol className="TypeList">
-            {data.types.map((type) => (
+            {props.data.types.map((type) => (
               <li>
-                <TypeTag key={data.id} type={type.type.name}/>
+                <TypeTag key={props.data.id} type={type.type.name}/>
               </li>
             ))}
           </ol>

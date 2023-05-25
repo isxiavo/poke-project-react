@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./ListDetails.css";
 import PokeDetail from "../poke-detail/PokeDetail";
+import { Pokemon } from "../../model/pokemon";
 
-export default function ListDetails(props) {
+type Props = {
+  pokemonsList: Pokemon[];
+  limitList: number;
+}
+
+export default function ListDetails(props: Props) {
   const [offset, setOffset] = useState(10);
   const pokemonsList = props.pokemonsList;
   const limit = props.limitList;
@@ -34,7 +40,7 @@ export default function ListDetails(props) {
           <th><button>Weight</button></th>
           <th></th>
         </tr>
-        {pokemonsList.map((poke, index, array) => {
+        {pokemonsList.map((poke: Pokemon, index: number) => {
           if (index < offset) {
             return <PokeDetail data={poke} key={poke.id}></PokeDetail>;
           } else {

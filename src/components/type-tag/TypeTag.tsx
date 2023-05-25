@@ -1,6 +1,11 @@
+import React from 'react';
 import './TypeTag.css'
 
-export default function TypeTag (props) {
+type Props = {
+    type: string;
+}
+
+export default function TypeTag (props: Props) {
 
     const colors = {
         normal:'#a8a878',
@@ -24,7 +29,7 @@ export default function TypeTag (props) {
     }
 
     const style = {
-        backgroundColor: colors[props.type] || "#000",
+        backgroundColor: colors[props.type as keyof typeof colors] || "#000",
     }
 
     return (
