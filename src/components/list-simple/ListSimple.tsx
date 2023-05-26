@@ -9,9 +9,9 @@ type Props = {
 }
 
 export default function ListSimple(props: Props) {
-  const [offset, setOffset] = useState(10);
   const pokemonsList = props.pokemonsList;
   const limit = props.limitList;
+  const [offset, setOffset] = useState(limit);
 
   /*function idSort(a, b) {
     if (a.id < b.id) {

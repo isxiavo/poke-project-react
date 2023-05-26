@@ -11,6 +11,13 @@ export type Pokemon = {
     home: string;
   };
 
+  hp: number,
+  atk: number,
+  def: number,
+  satk: number,
+  sdef: number,
+  spd: number,
+
   types: { type: {
     name: string;
     url: string;
@@ -21,7 +28,5 @@ export type Pokemon = {
     url: string;
   }}[]
 
-  stats: {
-    base_stat: number
-  }[]
+  
 }

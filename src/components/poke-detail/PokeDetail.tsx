@@ -104,12 +104,12 @@ export default function PokeDetail(props: Props) {
           </div>
         ))}
       </td>
-      <td>{props.data.stats[0].base_stat}</td>
-      <td>{props.data.stats[1].base_stat}</td>
-      <td>{props.data.stats[2].base_stat}</td>
-      <td>{props.data.stats[3].base_stat}</td>
-      <td>{props.data.stats[4].base_stat}</td>
-      <td>{props.data.stats[5].base_stat}</td>
+      <td>{props.data.hp}</td>
+      <td>{props.data.atk}</td>
+      <td>{props.data.def}</td>
+      <td>{props.data.satk}</td>
+      <td>{props.data.sdef}</td>
+      <td>{props.data.spd}</td>
     </tr>
   );
 }

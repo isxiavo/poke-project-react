@@ -33,10 +33,15 @@ export const fetchPokemons = (func: () => void) => { // pedindo uma função de 
             official_artwork: unit.sprites.other['official-artwork'].front_default,
             home: unit.sprites.other.home.front_default
           },
-          stats: unit.stats,
+          hp: unit.stats[0].base_stat,
+          atk: unit.stats[1].base_stat,
+          def: unit.stats[2].base_stat,
+          satk: unit.stats[3].base_stat,
+          sdef: unit.stats[4].base_stat,
+          spd: unit.stats[5].base_stat,
           types: unit.types,
           moves: unit.moves
-        }
+        };
 
         pokemons.push(newPokemon)
         return null
