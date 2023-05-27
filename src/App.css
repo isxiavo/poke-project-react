@@ -5,3 +5,14 @@
     margin: 0 auto;
   }
 }
+
+@keyframes sizing {
+  0% {
+    transform: scale(100%);
+    box-shadow: 0 .08rem .2rem rgba(0,0,0);
+  } 
+  100% {
+    transform: scale(110%);
+    box-shadow: 0 .08rem .3rem rgba(0,0,0);
+  }
+}

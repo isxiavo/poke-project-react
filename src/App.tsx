@@ -5,6 +5,7 @@ import ListSimple from "./components/list-simple/ListSimple";
 import ListDetails from "./components/list-details/ListDetails";
 import { Pokemon } from "./model/pokemon";
 import { fetchPokemons } from "./services/fetchPokemons.service";
+import PokeCard from "./components/poke-card/poke-card";
 
 let isLoading: boolean = true;
 
@@ -39,6 +40,7 @@ function App() {
         {loadList()}
       </div>
     </div>
+    
   );
 }
 

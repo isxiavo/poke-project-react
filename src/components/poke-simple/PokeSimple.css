@@ -11,6 +11,9 @@
   justify-self: center;
   justify-content: center;
 }
+.PokeSimple:hover {
+  animation: sizing .2s both;
+}
 
 .PokeSimple .Text{
   display: flex;

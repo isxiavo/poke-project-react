@@ -1,33 +1,49 @@
+.pokeDetail {
+  border: 1px solid black;
+  background-color: azure;
+}
+
+.pokeDetail:hover {
+  cursor: pointer;
+  animation: sizing 0.2s both;
+}
 
 .tdImg {
   padding: 0;
-  width: 1.5rem;
+  width: 1rem;
 }
 
 .thumbnail {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
   overflow: hidden;
+  border: 1px solid white;
+  border-radius: 100%;
 }
 
 .thumbnail img {
-  width: 2.5rem;
-}
-
-.types {
-  display: flex;
-  align-items: center;
-  justify-content:center;
-}
-
-.type-icon{
-  display: flex;
   width: 2rem;
 }
 
-.type-icon img{
-  width: 100%;
+.types{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.pokeDetail .type-container{
+  width: 1.5rem;
+  border-radius: 100%;
+  box-shadow: black .2px .5px 2px 1px;;
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0px)
+  }
+  100%{
+    transform: translateX(-2px)
+  }
 }

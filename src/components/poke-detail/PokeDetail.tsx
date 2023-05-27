@@ -1,9 +1,11 @@
 import React from "react";
 import "./PokeDetail.css";
 import { Pokemon } from "../../model/pokemon";
+import TypeIcon from "../type-icon/TypeIcon";
 
 type Props = {
   data: Pokemon;
+  click: any;
 };
 
 export default function PokeDetail(props: Props) {
@@ -12,66 +14,33 @@ export default function PokeDetail(props: Props) {
     dreamworld: props.data.sprites.dream_world,
     official: props.data.sprites.official_artwork,
     home: props.data.sprites.home,
-
-    types: {
-      normal:
-        "https://archives.bulbagarden.net/media/upload/thumb/9/95/Normal_icon_SwSh.png/64px-Normal_icon_SwSh.png",
-      fire: "https://archives.bulbagarden.net/media/upload/thumb/a/ab/Fire_icon_SwSh.png/64px-Fire_icon_SwSh.png",
-      water:
-        "https://archives.bulbagarden.net/media/upload/thumb/8/80/Water_icon_SwSh.png/64px-Water_icon_SwSh.png",
-      grass:
-        "https://archives.bulbagarden.net/media/upload/thumb/a/a8/Grass_icon_SwSh.png/64px-Grass_icon_SwSh.png",
-      electric:
-        "https://archives.bulbagarden.net/media/upload/thumb/7/7b/Electric_icon_SwSh.png/64px-Electric_icon_SwSh.png",
-      ice: "https://archives.bulbagarden.net/media/upload/thumb/1/15/Ice_icon_SwSh.png/64px-Ice_icon_SwSh.png",
-      fighting:
-        "https://archives.bulbagarden.net/media/upload/thumb/3/3b/Fighting_icon_SwSh.png/64px-Fighting_icon_SwSh.png",
-      poison:
-        "https://archives.bulbagarden.net/media/upload/thumb/8/8d/Poison_icon_SwSh.png/64px-Poison_icon_SwSh.png",
-      ground:
-        "https://archives.bulbagarden.net/media/upload/thumb/2/27/Ground_icon_SwSh.png/64px-Ground_icon_SwSh.png",
-      flying:
-        "https://archives.bulbagarden.net/media/upload/thumb/b/b5/Flying_icon_SwSh.png/64px-Flying_icon_SwSh.png",
-      psychic:
-        "https://archives.bulbagarden.net/media/upload/thumb/7/73/Psychic_icon_SwSh.png/64px-Psychic_icon_SwSh.png",
-      bug: "https://archives.bulbagarden.net/media/upload/thumb/9/9c/Bug_icon_SwSh.png/64px-Bug_icon_SwSh.png",
-      rock: "https://archives.bulbagarden.net/media/upload/thumb/1/11/Rock_icon_SwSh.png/64px-Rock_icon_SwSh.png",
-      ghost:
-        "https://archives.bulbagarden.net/media/upload/thumb/0/01/Ghost_icon_SwSh.png/64px-Ghost_icon_SwSh.png",
-      dark: "https://archives.bulbagarden.net/media/upload/thumb/d/d5/Dark_icon_SwSh.png/64px-Dark_icon_SwSh.png",
-      dragon:
-        "https://archives.bulbagarden.net/media/upload/thumb/7/70/Dragon_icon_SwSh.png/64px-Dragon_icon_SwSh.png",
-      steel:
-        "https://archives.bulbagarden.net/media/upload/thumb/0/09/Steel_icon_SwSh.png/64px-Steel_icon_SwSh.png",
-      fairy:
-        "https://archives.bulbagarden.net/media/upload/thumb/c/c6/Fairy_icon_SwSh.png/64px-Fairy_icon_SwSh.png",
-    },
   };
 
-  // const colors = {
-  //   normal:'rgb(168, 168, 120, 0.75)',
-  //   fire: 'rgb(240, 128, 48, 0.75)',
-  //   water: 'rgb(104, 144, 240, 0.75)',
-  //   grass: 'rgb(120, 200, 80, 0.75)',
-  //   electric: 'rgb(237, 199, 54, 0.75)',
-  //   ice: 'rgb(152, 216, 216, 0.75)',
-  //   fighting: 'rgb(192, 48, 40, 0.75)',
-  //   poison: 'rgb(160, 64, 160, 0.75)',
-  //   ground: 'rgb(215, 185, 105, 0.75)',
-  //   flying: 'rgb(168, 144, 240, 0.75)',
-  //   psychic: 'rgb(248, 88, 136, 0.75)',
-  //   bug: 'rgb(168, 184, 32, 0.75)',
-  //   rock: 'rgb(181, 158, 59, 0.75)',
-  //   ghost: 'rgb(112, 88, 152, 0.75)',
-  //   dark: 'rgb(112, 88, 72, 0.75)',
-  //   dragon: 'rgb(112, 56, 248, 0.75)',
-  //   steel: 'rgb(184, 184, 208, 0.75)',
-  //   fairy: 'rgb(223, 173, 177, 0.75)'
-  // }
+  const colors = {
+    normal: `rgb(174,180,186)`,
+    fire: `rgb(241,185,145)`,
+    water: `rgb(173,193,241)`,
+    grass: `rgb(181,221,161)`,
+    electric: `rgb(240,221,148)`,
+    ice: `rgb(197,229,229)`,
+    fighting: `rgb(217,145,141)`,
+    poison: `rgb(201,153,201)`,
+    ground: `rgb(207,155,128)`,
+    flying: `rgb(144,169,222)`,
+    psychic: `rgb(245,165,189)`,
+    bug: `rgb(205,213,137)`,
+    rock: `rgb(212,200,151)`,
+    ghost: `rgb(177,169,188)`,
+    dark: `rgb(135,130,144)`,
+    dragon: `rgb(177,149,245)`,
+    steel: `rgb(166,193,202)`,
+    fairy: `rgb(233,208,210)`,
+  };
 
-  // const style = {
-  //   backgroundColor: colors[props.data.types[0].type.name as keyof typeof colors]|| "#000",
-  // };
+  const style = {
+    backgroundColor:
+      colors[props.data.types[0].type.name as keyof typeof colors] || "#000",
+  };
 
   function checkImg(img: string) {
     if (img) {
@@ -86,30 +55,31 @@ export default function PokeDetail(props: Props) {
   }
 
   return (
-    <tr className="pokeDetail">
-      <td className="tdImg">
-        <div className="thumbnail">
-          <img src={checkImg(imgs.official)} alt="thumb" />
-        </div>
-      </td>
-      <td>{props.data.id}</td>
-      <td>{props.data.name}</td>
-      <td className="types">
-        {props.data.types.map((type) => (
-          <div className="type-icon">
-            <img
-              src={imgs.types[type.type.name as keyof typeof imgs.types]}
-              alt="type"
-            ></img>
+    <>
+      <tr className="pokeDetail" onClick={props.click}>
+        <td className="tdImg">
+          <div className="thumbnail" style={style}>
+            <img src={checkImg(imgs.official)} alt="thumb" />
           </div>
-        ))}
-      </td>
-      <td>{props.data.hp}</td>
-      <td>{props.data.atk}</td>
-      <td>{props.data.def}</td>
-      <td>{props.data.satk}</td>
-      <td>{props.data.sdef}</td>
-      <td>{props.data.spd}</td>
-    </tr>
+        </td>
+        <td>{props.data.id}</td>
+        <td>{props.data.name}</td>
+        <td>
+          <div className="types">
+            {props.data.types.map((type) => (
+              <div className="type-container">
+                <TypeIcon name={type.type.name} />
+              </div>
+            ))}
+          </div>
+        </td>
+        <td>{props.data.hp}</td>
+        <td>{props.data.atk}</td>
+        <td>{props.data.def}</td>
+        <td>{props.data.satk}</td>
+        <td>{props.data.sdef}</td>
+        <td>{props.data.spd}</td>
+      </tr>
+    </>
   );
 }

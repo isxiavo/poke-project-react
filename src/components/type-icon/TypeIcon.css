@@ -1,0 +1,8 @@
+.type-icon{
+  display: flex;
+  align-items: center;
+}
+
+.type-icon img{
+  width: 100%;
+}

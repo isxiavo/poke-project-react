@@ -6,18 +6,20 @@
   justify-content: center;
 }
 
-.detailsList td{
-  margin: 0;
-  border: .1rem solid gray;
+.detailsList table, th, td {
+  border-collapse: collapse;
 }
+
 .detailsList button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0;
   width: 100%;
 }
 
 .detailsList .tableList {
   width: 100%;
-  background-color: rgb(206, 206, 206);
 }
 
 .detailsList .loadButton {
@@ -30,6 +32,10 @@
   margin-bottom: 1rem;
   text-align: center;
   background-color: lightseagreen;
+}
+
+.thType{
+  width: 4rem;
 }
 
 /* @media screen and (min-width: 512px) {
