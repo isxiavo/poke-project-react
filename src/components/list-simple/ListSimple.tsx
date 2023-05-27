@@ -2,31 +2,38 @@ import React, { useState } from "react";
 import "./ListSimple.css";
 import PokeSimple from "../poke-simple/PokeSimple";
 import { Pokemon } from "../../model/pokemon";
+import PokeCard from "../poke-card/poke-card";
 
 type Props = {
   pokemonsList: Pokemon[];
   limitList: number;
 }
 
+let listReady = false;
+const pokemonsList: Pokemon[] = [];
+let currentPokeCard: Pokemon;
+
 export default function ListSimple(props: Props) {
-  const pokemonsList = props.pokemonsList;
+  if(!listReady) {
+    props.pokemonsList.map((unit) => pokemonsList.push(unit))
+    listReady = true
+  }
   const limit = props.limitList;
   const [offset, setOffset] = useState(limit);
-
-  /*function idSort(a, b) {
-    if (a.id < b.id) {
-      return -1;
-    }
-    if (a.id > b.id) {
-      return 1;
-    }
-    return 0;
-  }
-  pokemons.sort(idSort);
-  */
+  const [cardOpen, setCardOpen] = useState(false);
 
   function morePokemons() {
     setOffset((old) => old + limit);
+  }
+
+  function setPokeCard(pokemon: Pokemon) {
+    currentPokeCard = pokemon;
+    setCardOpen((old) => (old = true));
+    console.log(currentPokeCard);
+  }
+
+  function closePokeCard() {
+    setCardOpen((old) => (old = false));
   }
 
   return (
@@ -34,7 +41,7 @@ export default function ListSimple(props: Props) {
       <ol className="OList">
         {pokemonsList.map((poke: Pokemon, index: number) => {
           if (index < offset) {
-            return <PokeSimple data={poke} key={poke.id}></PokeSimple>;
+            return <PokeSimple data={poke} key={poke.id} click={()=>setPokeCard(poke)}></PokeSimple>;
           }else {
             return null
           }
@@ -43,6 +50,12 @@ export default function ListSimple(props: Props) {
       <button className="LoadButton" onClick={morePokemons}>
         ▼
       </button>
+      {cardOpen && (
+        <PokeCard
+          pokemon={currentPokeCard}
+          click={()=>closePokeCard()}
+        ></PokeCard>
+      )}
     </div>
   );
 }

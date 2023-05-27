@@ -13,6 +13,7 @@
 }
 .PokeSimple:hover {
   animation: sizing .2s both;
+  cursor: pointer;
 }
 
 .PokeSimple .Text{

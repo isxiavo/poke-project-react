@@ -3,108 +3,100 @@ import "./ListDetails.css";
 import PokeDetail from "../poke-detail/PokeDetail";
 import { Pokemon } from "../../model/pokemon";
 import PokeCard from "../poke-card/poke-card";
+import { sortPokemonList } from "../../services/sortPokemonList.service";
+import { filterPokemons } from "../../services/filterPokemons.service";
 
 type Props = {
   pokemonsList: Pokemon[];
   limitList: number;
-}
+};
 
+let listReady = false;
+let pokemonsList: Pokemon[] = [];
 let currentPokeCard: Pokemon;
 
-export default function ListDetails(props: Props) {
-  const pokemonsList = props.pokemonsList;
+export default function ListDetails(props: Props) { 
+  if(!listReady) {
+    props.pokemonsList.map((unit) => pokemonsList.push(unit))
+    listReady = true
+  }
   const limit = props.limitList;
   const [offset, setOffset] = useState(limit);
   const [cardOpen, setCardOpen] = useState(false);
-  
-  function SortPokemons(key: string) {
-
-    function Sort(a: any, b: any) {
-      if (a[key as keyof typeof a] < b[key as keyof typeof b]) {
-        return -1;
-      }
-      if (a[key as keyof typeof a] > b[key as keyof typeof b]) {
-        return 1;
-      }
-      return 0;
-    }
-    pokemonsList.sort(Sort);
-    morePokemons();
-  }  
 
   function morePokemons() {
     setOffset((old) => old + limit);
+    pokemonsList = filterPokemons(pokemonsList, ['grass', 'ghost'], {})
   }
 
   function setPokeCard(pokemon: Pokemon) {
-    currentPokeCard = pokemon
-    setCardOpen((old) => old = true);
-    console.log(currentPokeCard)
+    currentPokeCard = pokemon;
+    setCardOpen((old) => (old = true));
+    console.log(currentPokeCard);
   }
 
-  function closePokeCard () {
-    setCardOpen((old) => old = false);
+  function closePokeCard() {
+    setCardOpen((old) => (old = false));
   }
 
-  const setaStyle = {'fontSize': '.7rem'}
+  const setaStyle = { fontSize: ".7rem" };
 
   return (
     <>
-      {cardOpen && <PokeCard pokemon={currentPokeCard} click={()=>closePokeCard()}></PokeCard>}
       <div className="detailsList">
         <table className="tableList">
           <tr>
             <th className="thThumb"></th>
             <th>
-              <button onClick={() => SortPokemons('id')}>
+              <button onClick={() => sortPokemonList(pokemonsList, "id", morePokemons)}>
                 <span>#</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => SortPokemons('name')}>
+              <button onClick={() => sortPokemonList(pokemonsList, "name", morePokemons)}>
                 <span>NAME</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th className="thType">
-              <button >
+              <button>
                 <span>TYPE</span>
                 <span style={setaStyle}> </span>
               </button>
             </th>
             <th>
-              <button onClick={() => SortPokemons('hp')}>
+              <button onClick={() => sortPokemonList(pokemonsList, "hp", morePokemons)}>
                 <span>HP</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => SortPokemons('atk')}>
+              <button onClick={() => sortPokemonList(pokemonsList, "atk", morePokemons)}>
                 <span>ATK</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => SortPokemons('def')}>
+              <button onClick={() => sortPokemonList(pokemonsList, "def", morePokemons)}>
                 <span>DEF</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => SortPokemons('satk')}>
+              <button onClick={() => sortPokemonList(pokemonsList, "satk", morePokemons)}>
                 <span>SATK</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => SortPokemons('sdef')}>
+              <button onClick={() => sortPokemonList(pokemonsList, "sdef", morePokemons)}>
                 <span>SDEF</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => SortPokemons('spd')}>
+              <button onClick={() => sortPokemonList(pokemonsList, "spd", morePokemons)}>
                 <span>SPD</span>
                 <span style={setaStyle}>▼</span>
               </button>
@@ -112,7 +104,14 @@ export default function ListDetails(props: Props) {
           </tr>
           {pokemonsList.map((poke: Pokemon, index: number) => {
             if (index < offset) {
-              return <PokeDetail data={poke} key={poke.id} click={()=>setPokeCard(poke)}></PokeDetail>;
+              return (
+                <PokeDetail
+                  data={poke}
+                  placeID={index}
+                  key={poke.id}
+                  click={() => setPokeCard(poke)}
+                ></PokeDetail>
+              );
             } else {
               return null;
             }
@@ -122,6 +121,12 @@ export default function ListDetails(props: Props) {
           ▼
         </button>
       </div>
+      {cardOpen && (
+        <PokeCard
+          pokemon={currentPokeCard}
+          click={() => closePokeCard()}
+        ></PokeCard>
+      )}
     </>
   );
 }

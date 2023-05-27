@@ -36,7 +36,7 @@
 .pokeDetail .type-container{
   width: 1.5rem;
   border-radius: 100%;
-  box-shadow: black .2px .5px 2px 1px;;
+  box-shadow: black .2px .5px 2px 1px;
 }
 
 @keyframes slide-left {

@@ -40,6 +40,7 @@ export const fetchPokemons = (func: () => void) => { // pedindo uma função de 
           sdef: unit.stats[4].base_stat,
           spd: unit.stats[5].base_stat,
           types: unit.types,
+          abilities: unit.abilities,
           moves: unit.moves
         };
 

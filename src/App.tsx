@@ -5,7 +5,6 @@ import ListSimple from "./components/list-simple/ListSimple";
 import ListDetails from "./components/list-details/ListDetails";
 import { Pokemon } from "./model/pokemon";
 import { fetchPokemons } from "./services/fetchPokemons.service";
-import PokeCard from "./components/poke-card/poke-card";
 
 let isLoading: boolean = true;
 
@@ -14,7 +13,7 @@ function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([])
 
   const changeListState = () => {
-    setListState((old) => (old = !old));
+    setListState((old) => (old = !old)); // change type of list
     if(isLoading){isLoading = false}
   }
 
@@ -35,7 +34,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <button onClick={changeListState}></button>
+      <button onClick={changeListState}>A</button>
       <div>
         {loadList()}
       </div>

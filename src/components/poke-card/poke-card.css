@@ -3,14 +3,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(0,0,0, 0.5);
+  background-color: rgb(0,0,0, 0.9);
   width: 100%;
   height: 100%;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  overflow-x: hidden;
 }
 
 .card {
@@ -19,8 +18,13 @@
   align-items: center;
   position: relative;
   min-width: 20rem;
-  height: 100vmax;
+  height: 100rem;
   width: 30rem;
+}
+
+.card .horizontal-hr{
+  width: 100%;
+  border-radius: 100%;
 }
 
 .card img{
@@ -44,36 +48,60 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content:space-between;
   width: 100%;
+}
+
+.card .wth-container .vertical-hr {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  height: 40%;
+  border-radius: 100%;
+}
+
+.card .weight-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card .height-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .types-container{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 100%;
 }
 
 .card .type-group{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  border: 1px solid red;
+  margin-left: .7rem;
+  margin-right: .7rem;
 }
 .card .type-container {
   display: flex;
   align-items: center;
-  justify-content: center;
   border-radius: 100%;
-
+  margin-top: 1rem;
+  width: 3rem;
+  height: 3rem;
   position:relative;
-  border: 1px solid blue;
+  box-shadow: black .5px 1px 2px 1px;
 }
-.card .type-container h3{
-  border: 1px solid yellow;
+.card h2{
+  width: 100%;
+}
 
+.card  h3{
+  color: rgb(117, 117, 117);
 }
 
 @media screen and (max-width: 600px){

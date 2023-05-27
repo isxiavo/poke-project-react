@@ -2,13 +2,16 @@ import React from "react";
 import "./PokeDetail.css";
 import { Pokemon } from "../../model/pokemon";
 import TypeIcon from "../type-icon/TypeIcon";
+import { colorsLight } from "../../data/pokemonColors";
 
 type Props = {
   data: Pokemon;
-  click: any;
+  placeID: number;
+  click: () => void;
 };
 
 export default function PokeDetail(props: Props) {
+
   const imgs = {
     default: props.data.sprites.front_default,
     dreamworld: props.data.sprites.dream_world,
@@ -16,30 +19,9 @@ export default function PokeDetail(props: Props) {
     home: props.data.sprites.home,
   };
 
-  const colors = {
-    normal: `rgb(174,180,186)`,
-    fire: `rgb(241,185,145)`,
-    water: `rgb(173,193,241)`,
-    grass: `rgb(181,221,161)`,
-    electric: `rgb(240,221,148)`,
-    ice: `rgb(197,229,229)`,
-    fighting: `rgb(217,145,141)`,
-    poison: `rgb(201,153,201)`,
-    ground: `rgb(207,155,128)`,
-    flying: `rgb(144,169,222)`,
-    psychic: `rgb(245,165,189)`,
-    bug: `rgb(205,213,137)`,
-    rock: `rgb(212,200,151)`,
-    ghost: `rgb(177,169,188)`,
-    dark: `rgb(135,130,144)`,
-    dragon: `rgb(177,149,245)`,
-    steel: `rgb(166,193,202)`,
-    fairy: `rgb(233,208,210)`,
-  };
-
-  const style = {
+  const thumbBG = {
     backgroundColor:
-      colors[props.data.types[0].type.name as keyof typeof colors] || "#000",
+      colorsLight[props.data.types[0].type.name as keyof typeof colorsLight] || "#000",
   };
 
   function checkImg(img: string) {
@@ -56,9 +38,9 @@ export default function PokeDetail(props: Props) {
 
   return (
     <>
-      <tr className="pokeDetail" onClick={props.click}>
+      <tr className="pokeDetail" onClick={props.click} style={props.placeID % 2 === 0 ? {'backgroundColor': 'lightgray'} : {'backgroundColor': 'white'}}>
         <td className="tdImg">
-          <div className="thumbnail" style={style}>
+          <div className="thumbnail" style={thumbBG}>
             <img src={checkImg(imgs.official)} alt="thumb" />
           </div>
         </td>
