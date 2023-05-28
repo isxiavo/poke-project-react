@@ -1,0 +1,34 @@
+.filterbar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: fixed;
+  width: 20rem;
+  height:100%;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: white;
+  overflow: hidden;
+}
+
+.filterbar hr{
+  width: 85%;
+  border-radius: 100%;
+}
+
+/* .filterbar:hover {
+  animation: hideAnim 1s ease-in both;
+} */
+
+@keyframes hideAnim {
+
+  0%{
+    transform: translateX(0px);
+  }
+
+  100%{
+    transform: translateX(100%);
+  }
+}

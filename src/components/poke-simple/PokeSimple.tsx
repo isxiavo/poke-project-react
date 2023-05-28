@@ -52,7 +52,7 @@ export default function PokeSimple(props: Props) {
           <ol className="TypeList">
             {props.data.types.map((type) => (
               <li>
-                <TypeTag key={props.data.id} type={type.type.name}/>
+                <TypeTag key={props.data.id} type={type.type.name} isCheck={false}/>
               </li>
             ))}
           </ol>

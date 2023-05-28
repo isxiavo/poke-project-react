@@ -1,0 +1,11 @@
+.types-filterbox{
+  border: 1px solid green;
+  width: 85%;
+}
+
+.types-filterbox .types-grid {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}

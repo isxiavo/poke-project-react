@@ -17,6 +17,7 @@ export const colorsDefault = {
   dragon: `rgb(3,109,197)`,
   steel: `rgb(97,148,166)`,
   fairy: `rgb(237,144,231)`,
+  any:'rosybrown'
 };
 
 export const colorsLight = {
