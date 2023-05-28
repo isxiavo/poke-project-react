@@ -5,6 +5,7 @@ import ListSimple from "./components/list-simple/ListSimple";
 import ListDetails from "./components/list-details/ListDetails";
 import { Pokemon } from "./model/pokemon";
 import { fetchPokemons } from "./services/fetchPokemons.service";
+import FilterBar from "./components/filter-bar/FilterBar";
 
 let isLoading: boolean = true;
 
@@ -17,7 +18,7 @@ function App() {
     if(isLoading){isLoading = false}
   }
 
-  function loadList() {
+  function currentList() {
     if(isLoading) {
       return <span>LOADING.................</span>
     }
@@ -36,8 +37,9 @@ function App() {
       <Header />
       <button onClick={changeListState}>A</button>
       <div>
-        {loadList()}
+        {currentList()}
       </div>
+      <FilterBar></FilterBar>
     </div>
     
   );

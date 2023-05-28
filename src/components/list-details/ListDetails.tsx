@@ -26,7 +26,7 @@ export default function ListDetails(props: Props) {
 
   function morePokemons() {
     setOffset((old) => old + limit);
-    pokemonsList = filterPokemons(pokemonsList, ['grass', 'ghost'], {})
+    pokemonsList = filterPokemons(pokemonsList, [], ['big-pecks'], [], {})
   }
 
   function setPokeCard(pokemon: Pokemon) {

@@ -21,7 +21,7 @@ const PokeCard: FC<PokeCardProps> = (props) => {
 
           <div className='wth-container'>
             <div className="weight-container">
-              <h2>{props.pokemon.weight}kg</h2>
+              <h2>{props.pokemon.weight / 10}kg</h2>
               <h3>WEIGHT</h3>
             </div>
             <hr className='vertical-hr'/>
@@ -39,7 +39,7 @@ const PokeCard: FC<PokeCardProps> = (props) => {
             </div>
             <hr className='vertical-hr'/>
             <div className="height-container">
-              <h2>{props.pokemon.height}m</h2>
+              <h2>{props.pokemon.height / 10}m</h2>
               <h3>HEIGHT</h3>
             </div>
           </div>

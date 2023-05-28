@@ -1,41 +1,94 @@
 import { Pokemon } from "../model/pokemon";
 
-type Stats = {
-  hp?: {min: number, max: number},
-  atk?: {min: number, max: number},
-  def?: {min: number, max: number},
-  satk?: {min: number, max: number},
-  sdef?: {min: number, max: number},
-  spd?: {min: number, max: number}
-}
+type checkStatsType = {
+  hp?: { min: number; max: number };
+  atk?: { min: number; max: number };
+  def?: { min: number; max: number };
+  satk?: { min: number; max: number };
+  sdef?: { min: number; max: number };
+  spd?: { min: number; max: number };
+};
 
-export const filterPokemons = (lista: Pokemon[], types: string[], stats: Stats) => {
+export const filterPokemons = (
+  lista: Pokemon[],
+  filterTypes: string[],
+  filterAbilities: string[],
+  filterMoves: string[],
+  filterStats: checkStatsType
+) => {
   let newLista: Pokemon[] = lista;
 
-  if (types.length > 0) {
-
-     newLista = lista.filter((poke) => {
-      
-      if (types.length < 2) {
+  if (filterTypes.length > 0) {
+    newLista = lista.filter((poke) => {
+      if (filterTypes.length < 2) {
+        return poke.types[0].type.name === filterTypes[0];
+      } else {
+        if (filterTypes[1] === "any") {
+          return (
+            poke.types.length > 1 &&
+            (filterTypes[0] === poke.types[0].type.name ||
+              filterTypes[0] === poke.types[1].type.name)
+          );
+        }
         return (
-          poke.types[0].type.name === types[0]
+          poke.types.length > 1 &&
+          (poke.types[0].type.name === filterTypes[0] ||
+            poke.types[0].type.name === filterTypes[1]) &&
+          (poke.types[1].type.name === filterTypes[0] ||
+            poke.types[1].type.name === filterTypes[1])
         );
       }
-      else {
-        return (
-          poke.types.length > 1
-          &&
-          (poke.types[0].type.name === types[0] || poke.types[0].type.name === types[1])
-          &&
-          (poke.types[1].type.name === types[0] || poke.types[1].type.name === types[1])
-        )
-      }
-
     });
-
   }
 
-  
+  if (filterAbilities.length > 0) {
+    newLista = newLista.filter((poke) => {
+      if (filterAbilities.length < 2) {
+        return (
+          poke.abilities.some((ele) => ele.ability.name === filterAbilities[0])
+         );
+      } else {
+        return (
+          poke.abilities.length > 1 &&
+          filterAbilities.every((val) =>
+            poke.abilities.some((ele) => ele.ability.name === val)
+          ) //   SOME É UM OU OUTRO
+        );
+      }
+    });
+  }
+
+  if (filterMoves.length > 0) {
+
+    newLista = newLista.filter((poke) => {
+     
+     if (filterMoves.length < 2) {
+       return (
+        poke.moves.some((ele) => ele.move.name === filterMoves[0])
+       );
+     }
+     else {
+       return (
+         poke.moves.length > 1
+         &&
+         filterMoves.every((val) => poke.moves.some((ele) => ele.move.name === val))  //   SOME É UM OU OUTRO
+       )
+     }
+
+   });
+
+ }
+
+  for (const [statName, statValue] of Object.entries(filterStats)) { // loop check for stats (MIN-MAX)
+    if (statName !== undefined) {
+      newLista = newLista.filter((poke) => {
+        return (
+          Number(poke[statName as keyof typeof poke]) >= statValue.min &&
+          Number(poke[statName as keyof typeof poke]) <= statValue.max
+        );
+      });
+    }
+  }
 
   return newLista;
 };
