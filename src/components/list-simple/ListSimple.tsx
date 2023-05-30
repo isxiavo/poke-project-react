@@ -3,21 +3,16 @@ import "./ListSimple.css";
 import PokeSimple from "../poke-simple/PokeSimple";
 import { Pokemon } from "../../model/pokemon";
 import PokeCard from "../poke-card/poke-card";
+import { usePokeList } from "../../context/PokeListContext";
 
-type Props = {
-  pokemonsList: Pokemon[];
+interface Props  {
   limitList: number;
 }
 
-let listReady = false;
-const pokemonsList: Pokemon[] = [];
 let currentPokeCard: Pokemon;
 
 export default function ListSimple(props: Props) {
-  if(!listReady) {
-    props.pokemonsList.map((unit) => pokemonsList.push(unit))
-    listReady = true
-  }
+  const {pokemons} = usePokeList();
   const limit = props.limitList;
   const [offset, setOffset] = useState(limit);
   const [cardOpen, setCardOpen] = useState(false);
@@ -39,7 +34,7 @@ export default function ListSimple(props: Props) {
   return (
     <div className="SimpleList">
       <ol className="OList">
-        {pokemonsList.map((poke: Pokemon, index: number) => {
+        {pokemons!.map((poke: Pokemon, index: number) => {
           if (index < offset) {
             return <PokeSimple data={poke} key={poke.id} click={()=>setPokeCard(poke)}></PokeSimple>;
           }else {

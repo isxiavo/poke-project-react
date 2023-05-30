@@ -9,22 +9,24 @@ interface Props {
 }
 
 export default function TypeTag(props: Props) {
+  
   const typeColorStyle = {
     backgroundColor:
       colorsDefault[props.type as keyof typeof colorsDefault] || "#000",
   };
 
   const [isChecked, setIsChecked] = useState(false);
-  const [className, setClassName] = useState("typetag-unchecked");
+  const [className, setClassName] = useState("");
 
   function check() {
-    setIsChecked(!isChecked)
+    setIsChecked((old) => old = !isChecked)
   }
 
   useEffect(() => {
     setClassName((old) => old = isChecked ? "typetag-checked" : "typetag-unchecked")
     props.func?.(isChecked, props.type);
-  },[isChecked, props])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[isChecked])
 
   if (props.isCheck) {
     return (

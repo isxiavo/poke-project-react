@@ -1,7 +1,6 @@
 import { Pokemon } from "../model/pokemon";
 
-
-export const fetchPokemons = (func: () => void) => { // pedindo uma função de retorno vazio que vai alterar o estado do loading em App
+export const fetchPokemons = (readyFunc: () => void) => { // pedindo uma função de retorno vazio que vai alterar o estado do loading em App
   const limit = 1300;
   const offset = 0;
   const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
@@ -47,7 +46,7 @@ export const fetchPokemons = (func: () => void) => { // pedindo uma função de 
         pokemons.push(newPokemon)
         return null
       }))
-      .then(func)
+      .then(readyFunc)
     .catch((error) => console.log(error))
 
     return pokemons;

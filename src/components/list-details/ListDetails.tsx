@@ -4,29 +4,23 @@ import PokeDetail from "../poke-detail/PokeDetail";
 import { Pokemon } from "../../model/pokemon";
 import PokeCard from "../poke-card/poke-card";
 import { sortPokemonList } from "../../services/sortPokemonList.service";
-import { filterPokemons } from "../../services/filterPokemons.service";
+import { usePokeList } from "../../context/PokeListContext";
 
 type Props = {
-  pokemonsList: Pokemon[];
   limitList: number;
 };
 
-let listReady = false;
-let pokemonsList: Pokemon[] = [];
 let currentPokeCard: Pokemon;
 
 export default function ListDetails(props: Props) { 
-  if(!listReady) {
-    props.pokemonsList.map((unit) => pokemonsList.push(unit))
-    listReady = true
-  }
+  const {pokemons} = usePokeList();
+
   const limit = props.limitList;
   const [offset, setOffset] = useState(limit);
   const [cardOpen, setCardOpen] = useState(false);
 
   function morePokemons() {
     setOffset((old) => old + limit);
-    pokemonsList = filterPokemons(pokemonsList, [], [], [], {})
   }
 
   function setPokeCard(pokemon: Pokemon) {
@@ -48,13 +42,13 @@ export default function ListDetails(props: Props) {
           <tr>
             <th className="thThumb"></th>
             <th>
-              <button onClick={() => sortPokemonList(pokemonsList, "id", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokemons!, "id", morePokemons)}>
                 <span>#</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemonsList, "name", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokemons!, "name", morePokemons)}>
                 <span>NAME</span>
                 <span style={setaStyle}>▼</span>
               </button>
@@ -66,43 +60,43 @@ export default function ListDetails(props: Props) {
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemonsList, "hp", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokemons!, "hp", morePokemons)}>
                 <span>HP</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemonsList, "atk", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokemons!, "atk", morePokemons)}>
                 <span>ATK</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemonsList, "def", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokemons!, "def", morePokemons)}>
                 <span>DEF</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemonsList, "satk", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokemons!, "satk", morePokemons)}>
                 <span>SATK</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemonsList, "sdef", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokemons!, "sdef", morePokemons)}>
                 <span>SDEF</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemonsList, "spd", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokemons!, "spd", morePokemons)}>
                 <span>SPD</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
           </tr>
-          {pokemonsList.map((poke: Pokemon, index: number) => {
+          {pokemons!.map((poke: Pokemon, index: number) => {
             if (index < offset) {
               return (
                 <PokeDetail

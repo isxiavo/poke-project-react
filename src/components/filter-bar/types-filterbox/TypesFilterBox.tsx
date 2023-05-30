@@ -42,25 +42,18 @@ const TypesFilterBox: FC<TypesFilterBoxProps> = (props) => {
   function setFilterTypes(isChecked: boolean, type: string) {
     if (isChecked) {
       props.checkedTypes.push(type);
+      console.log('adicionou')
     } else {
       const i = props.checkedTypes.indexOf(type);
       props.checkedTypes.splice(i, 1);
+      console.log('removeu')
     }
 
     if(props.checkedTypes.length > 1) {
-      setTagsAvai(false)
-    }
-
-    console.log(props.checkedTypes);
-  }
-
-  function setTagsAvai(value: boolean) {
-    if(!value) {
-
-    }
-    else{
       
     }
+
+    console.log(props.checkedTypes)
   }
 
   return (
