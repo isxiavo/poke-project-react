@@ -1,4 +1,4 @@
-import { Pokemon } from "../model/pokemon";
+import { Pokemon } from "../model/pokemonModel";
 
 type checkStatsType = {
   hp?: { min: number; max: number };
@@ -17,29 +17,28 @@ export const filterPokemons = (
   filterStats: checkStatsType
 ) => {
   let newLista: Pokemon[] = [];
+  lista.map(unit => newLista.push(unit))
 
   if (filterTypes.length > 0) {
-    newLista = lista.filter((poke) => {
+    newLista = newLista.filter((poke) => {
       if (filterTypes.length < 2) {
         if (filterTypes[0] === "any") {
-          console.log('apenas "any"')
           return lista;
         } else {
-          console.log('um tipo que não é "any"')
           return (
             poke.types.length < 2 && poke.types[0].type.name === filterTypes[0]
           );
         }
       } else {
         if (filterTypes.includes("any")) {
-          console.log('mais de um tipo com "any"')
           return (
             poke.types.length > 1 &&
-            (poke.types[0].type.name === filterTypes.find((name) => name !== 'any') ||
-              poke.types[1].type.name === filterTypes.find((name) => name !== 'any'))
+            (poke.types[0].type.name ===
+              filterTypes.find((name) => name !== "any") ||
+              poke.types[1].type.name ===
+                filterTypes.find((name) => name !== "any"))
           );
         } else {
-          console.log('mais de um tipo sem "any"')
           return (
             poke.types.length > 1 &&
             (poke.types[0].type.name === filterTypes[0] ||
@@ -68,19 +67,16 @@ export const filterPokemons = (
       }
     });
   }
-
+  
   if (filterMoves.length > 0) {
+    
     newLista = newLista.filter((poke) => {
-      if (filterMoves.length < 2) {
-        return poke.moves.some((ele) => ele.move.name === filterMoves[0]);
-      } else {
-        return (
-          poke.moves.length > 1 &&
-          filterMoves.every((val) =>
-            poke.moves.some((ele) => ele.move.name === val)
-          ) //   SOME É UM OU OUTRO
-        );
-      }
+
+      return (
+        filterMoves.every((val) =>
+          poke.moves.some((ele) => ele.move.name === val)
+        ) //   SOME É UM OU OUTRO
+      );
     });
   }
 

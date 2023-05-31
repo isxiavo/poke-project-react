@@ -58,7 +58,7 @@ const TypesFilterBox: FC<TypesFilterBoxProps> = (props) => {
 
   return (
     <div className="types-filterbox">
-      <h2>TYPE</h2>
+      <h3>TYPE</h3>
       <div className="types-grid">
         {typetagsList}
       </div>

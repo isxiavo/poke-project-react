@@ -11,7 +11,7 @@ interface StatsFilterBoxProps {
     spd?: { min: number; max: number };
   };
 }
-const statList: string[] = ['hp','atk','def','satk','sdef','spd']
+const statNamesList: string[] = ['hp','atk','def','satk','sdef','spd']
 
 const StatsFilterBox: FC<StatsFilterBoxProps> = (props) => {
   function updateStatsCheck(statName: string, keyName: string, value: number) {
@@ -26,8 +26,8 @@ const StatsFilterBox: FC<StatsFilterBoxProps> = (props) => {
 
   return (
     <div className="stats-filterbox">
-      <h2>STATS</h2>
-        {statList.map((stat) => 
+      <h3>STATS</h3>
+        {statNamesList.map((stat) => 
           <div className="stat">
             <label>{stat.toUpperCase()}</label>
             <input

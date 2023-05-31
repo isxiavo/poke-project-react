@@ -1,6 +1,6 @@
 import React from "react";
 import "./PokeDetail.css";
-import { Pokemon } from "../../model/pokemon";
+import { Pokemon } from "../../model/pokemonModel";
 import TypeIcon from "../type-icon/TypeIcon";
 import { colorsLight } from "../../data/pokemonColors";
 

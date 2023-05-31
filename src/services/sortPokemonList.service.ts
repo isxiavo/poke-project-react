@@ -1,4 +1,4 @@
-import { Pokemon } from "../model/pokemon";
+import { Pokemon } from "../model/pokemonModel";
 
 export const sortPokemonList = (list: Pokemon[], key: string, func:()=>void) => {
   function Sort(a: any, b: any) {

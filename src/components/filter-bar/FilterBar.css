@@ -4,8 +4,9 @@
   align-items: center;
   justify-content: space-evenly;
   position: fixed;
+  padding: 1.5rem;
   width: 20rem;
-  height:100%;
+  height:100dvh;
   z-index: 1;
   top: 0;
   right: 0;
@@ -18,11 +19,21 @@
   border-radius: 100%;
 }
 
-/* .filterbar:hover {
-  animation: hideAnim 1s ease-in both;
-} */
+.filterbar:disabled {
+  animation: hideAnim .5s ease-in both;
+}
 
 @keyframes hideAnim {
+
+  0%{
+    transform: translateX(0px);
+  }
+
+  100%{
+    transform: translateX(100%);
+  }
+}
+@keyframes unHideAnim {
 
   0%{
     transform: translateX(0px);

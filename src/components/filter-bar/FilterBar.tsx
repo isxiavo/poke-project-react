@@ -1,17 +1,23 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import "./FilterBar.css";
 import { usePokeList } from "../../context/PokeListContext";
 import { filterPokemons } from "../../services/filterPokemons.service";
 import StatsFilterBox from "./stats-filterbox/StatsFilterBox";
 import TypesFilterBox from "./types-filterbox/TypesFilterBox";
+import MovesFilterBox from "./moves-filterbox/MovesFilterBox";
 import { IPokeList } from "../../interfaces/PokeListInterface";
-import { Pokemon } from "../../model/pokemon";
+import { Pokemon } from "../../model/pokemonModel";
+import AbilitiesFilterBox from "./abilities-filterbox/AbilitiesFilterBox";
 
-interface FilterBarProps {}
+interface FilterBarProps {
+
+}
 
 const basePokemonList: Pokemon[] = [];
 let isBaseReady = false;
 const typesList: string[] = [];
+const abilitiesList: string[] = [];
+const movesList: string[] = [];
 const statsCheck = {
   hp: { min: 0, max: 0 },
   atk: { min: 0, max: 0 },
@@ -21,36 +27,31 @@ const statsCheck = {
   spd: { min: 0, max: 0 },
 };
 
-const FilterBar: FC<FilterBarProps> = () => {
+const FilterBar: FC<FilterBarProps> = (props) => {
   const pokeCtx: IPokeList = usePokeList();
 
   function applyFilter() {
-    if (!isBaseReady) {
+    if (!isBaseReady) { // primeiro set
       pokeCtx.pokemons!.map((unit) => basePokemonList.push(unit));
       isBaseReady = true;
     }
     pokeCtx.setPokemons?.((old) => (old = basePokemonList));
 
-    if (typesList.length > 0) {
-      pokeCtx.setPokemons?.(
-        (old) => (old = filterPokemons(basePokemonList, typesList, [], [], statsCheck))
-      );
-      console.log("filtrou");
-    }
-    console.log(basePokemonList);
-    console.log(pokeCtx.pokemons);
+    pokeCtx.setPokemons?.(
+      () => (filterPokemons(basePokemonList, typesList, abilitiesList, movesList, statsCheck))
+    );
   }
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    <div className="filterbar">
-      <button className="hideButton">→</button>
+    <div className='filterbar'>
+      <button className="hideButton" style={{'marginRight': 'auto'}}>→</button>
       <TypesFilterBox checkedTypes={typesList}></TypesFilterBox>
       <hr></hr>
       <StatsFilterBox statsCheckProp={statsCheck}></StatsFilterBox>
+      <hr></hr>
+      <AbilitiesFilterBox abilitiesListProp={abilitiesList}></AbilitiesFilterBox>
+      <hr></hr>
+      <MovesFilterBox movesListProp={movesList}/>
       <button onClick={applyFilter}>Apply</button>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ListSimple.css";
 import PokeSimple from "../poke-simple/PokeSimple";
-import { Pokemon } from "../../model/pokemon";
+import { Pokemon } from "../../model/pokemonModel";
 import PokeCard from "../poke-card/poke-card";
 import { usePokeList } from "../../context/PokeListContext";
 

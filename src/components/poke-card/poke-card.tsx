@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './poke-card.css'
-import { Pokemon } from '../../model/pokemon';
+import { Pokemon } from '../../model/pokemonModel';
 import TypeIcon from '../type-icon/TypeIcon';
 
 

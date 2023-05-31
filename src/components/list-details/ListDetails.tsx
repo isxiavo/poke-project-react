@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ListDetails.css";
 import PokeDetail from "../poke-detail/PokeDetail";
-import { Pokemon } from "../../model/pokemon";
+import { Pokemon } from "../../model/pokemonModel";
 import PokeCard from "../poke-card/poke-card";
 import { sortPokemonList } from "../../services/sortPokemonList.service";
 import { usePokeList } from "../../context/PokeListContext";

@@ -1,16 +1,16 @@
-.stats-filterbox{
+.moves-filterbox{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   width: 100%;
 }
-.stats-filterbox .stat{
+.moves-container{
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
   justify-content:space-between;
   width: 100%;
-}
-.stats-filterbox .stat .textInput{
-  width: 5rem;
+  height: 10rem;
+  overflow-x: hidden;
 }

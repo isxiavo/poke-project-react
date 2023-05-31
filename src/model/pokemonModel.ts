@@ -1,3 +1,5 @@
+import { Move } from "./moveModel";
+
 export type Pokemon = {
   id: number;
   name: string;
@@ -33,9 +35,6 @@ export type Pokemon = {
   }[];
 
   moves: {
-    move: {
-      name: string;
-      url: string;
-    };
+    move: Move
   }[];
 };

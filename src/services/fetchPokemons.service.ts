@@ -1,7 +1,7 @@
-import { Pokemon } from "../model/pokemon";
+import { Pokemon } from "../model/pokemonModel";
 
 export const fetchPokemons = (readyFunc: () => void) => { // pedindo uma função de retorno vazio que vai alterar o estado do loading em App
-  const limit = 1300;
+  const limit = 1100;
   const offset = 0;
   const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
   const pokemons: Pokemon[] = []

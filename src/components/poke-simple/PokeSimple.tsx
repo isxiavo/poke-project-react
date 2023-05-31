@@ -1,7 +1,7 @@
 import React from "react";
 import "./PokeSimple.css";
 import TypeTag from "../type-tag/TypeTag";
-import { Pokemon } from "../../model/pokemon";
+import { Pokemon } from "../../model/pokemonModel";
 import { colorsLight } from "../../data/pokemonColors";
 
 type Props = {

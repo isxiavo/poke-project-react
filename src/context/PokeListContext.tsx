@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react"
-import { Pokemon } from "../model/pokemon"
+import { Pokemon } from "../model/pokemonModel"
 import { fetchPokemons } from "../services/fetchPokemons.service"
 import { IPokeList } from "../interfaces/PokeListInterface"
 
@@ -13,11 +13,11 @@ export function PokeListProvider ({children}: any) {
 
   const [pokemons, setPokemons] = useState<Pokemon[]>([])
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [listReady, setListReady] = useState(false);
+  const [pokeListReady, setPokeListReady] = useState(false);
   const ctxValue: IPokeList = {pokemons, setPokemons}
 
   function isListRead() {
-    setListReady((old) => old = !old)
+    setPokeListReady((old) => old = !old)
   }
 
   useEffect(() =>{
