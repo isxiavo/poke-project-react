@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
-import './MovesFilterBox.css'
+import React, { FC } from 'react';
+import './MovesFilterBox.css';
+import { useQuery } from '@tanstack/react-query'
 import { fetchMoves } from '../../../services/fetchMoves.service';
 import MoveTagFilter from './move-tagfilter/MoveTagFilter';
 import { Move } from '../../../model/moveModel';
@@ -10,12 +11,7 @@ interface MovesFilterBoxProps {
 
 const MovesFilterBox: FC<MovesFilterBoxProps> = (props) => {
 
-  const [movesList, setMovesList] = useState<Move[]>([])
-  const [movesListReady, setMovesListReady] = useState(false);
-
-  function isMovesListReady() {
-    setMovesListReady((old) => old = !old)
-  }
+  const {data: movesList, isLoading} = useQuery(['moves'], fetchMoves)
 
   function checkMove(moveName: string, isChecked: boolean) {
     if(isChecked) {
@@ -27,16 +23,12 @@ const MovesFilterBox: FC<MovesFilterBoxProps> = (props) => {
     console.log(props.movesListProp)
   }
 
-  useEffect(() => {
-    setMovesList(() => fetchMoves(isMovesListReady))
-  },[])
-
   return(
     <div className='moves-filterbox'>
       <h3>MOVES</h3>
       <input type='text' placeholder='search'/>
       <div className='moves-container'>
-        {movesListReady && movesList.map((move,i) =>
+        {!isLoading && movesList!.map((move,i) =>
         <MoveTagFilter name={move.name} placeID={i} check={checkMove}></MoveTagFilter>)}
       </div>
     </div>

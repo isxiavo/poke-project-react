@@ -5,6 +5,8 @@ import { Pokemon } from "../../model/pokemonModel";
 import PokeCard from "../poke-card/poke-card";
 import { sortPokemonList } from "../../services/sortPokemonList.service";
 import { usePokeList } from "../../context/PokeListContext";
+import { IPokeList } from "../../interfaces/PokeListInterface";
+import FilterBar from "../filter-bar/FilterBar";
 
 type Props = {
   limitList: number;
@@ -13,7 +15,7 @@ type Props = {
 let currentPokeCard: Pokemon;
 
 export default function ListDetails(props: Props) { 
-  const {pokemons} = usePokeList();
+  const pokeCtx: IPokeList = usePokeList();
 
   const limit = props.limitList;
   const [offset, setOffset] = useState(limit);
@@ -38,17 +40,18 @@ export default function ListDetails(props: Props) {
   return (
     <>
       <div className="detailsList">
+        <FilterBar func={morePokemons}></FilterBar>
         <table className="tableList">
           <tr>
             <th className="thThumb"></th>
             <th>
-              <button onClick={() => sortPokemonList(pokemons!, "id", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "id", morePokemons)}>
                 <span>#</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemons!, "name", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "name", morePokemons)}>
                 <span>NAME</span>
                 <span style={setaStyle}>▼</span>
               </button>
@@ -60,47 +63,47 @@ export default function ListDetails(props: Props) {
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemons!, "hp", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "hp", morePokemons)}>
                 <span>HP</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemons!, "atk", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "atk", morePokemons)}>
                 <span>ATK</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemons!, "def", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "def", morePokemons)}>
                 <span>DEF</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemons!, "satk", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "satk", morePokemons)}>
                 <span>SATK</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemons!, "sdef", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "sdef", morePokemons)}>
                 <span>SDEF</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokemons!, "spd", morePokemons)}>
+              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "spd", morePokemons)}>
                 <span>SPD</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
           </tr>
-          {pokemons!.map((poke: Pokemon, index: number) => {
+          {!pokeCtx.isLoading && pokeCtx.pokemons!.map((poke: Pokemon, index: number) => {
             if (index < offset) {
               return (
                 <PokeDetail
-                  data={poke}
+                  poke={poke}
                   placeID={index}
                   key={poke.id}
                   click={() => setPokeCard(poke)}

@@ -5,25 +5,21 @@ import { Pokemon } from "../../model/pokemonModel";
 import { colorsLight } from "../../data/pokemonColors";
 
 type Props = {
-  data: Pokemon;
+  poke: Pokemon;
   click: () => void;
 }
 
-
-
 export default function PokeSimple(props: Props) {
 
-  
-
   const imgs = {
-    default : props.data.sprites.front_default,
-    dreamworld : props.data.sprites.dream_world,
-    official: props.data.sprites.official_artwork,
-    home : props.data.sprites.home
+    default : props.poke.sprites.front_default,
+    dreamworld : props.poke.sprites.other.dream_world.front_default,
+    official: props.poke.sprites.other["official-artwork"].front_default,
+    home : props.poke.sprites.other.home.front_default
   }
 
   const style = {
-    backgroundColor: colorsLight[props.data.types[0].type.name as keyof typeof colorsLight] || "#000",
+    backgroundColor: colorsLight[props.poke.types[0].type.name as keyof typeof colorsLight] || "#000",
   };
 
   function checkImg(img: string) {
@@ -44,15 +40,15 @@ export default function PokeSimple(props: Props) {
   return (
     <li className="PokeSimple" style={style} onClick={props.click}>
       <div className="Text">
-        <span className="Name">{props.data.name}</span>
-        <span className="Number">#{props.data.id}</span>
+        <span className="Name">{props.poke.name}</span>
+        <span className="Number">#{props.poke.id}</span>
       </div>
       <div className="Details">
         <div>
           <ol className="TypeList">
-            {props.data.types.map((type) => (
+            {props.poke.types.map((type) => (
               <li>
-                <TypeTag key={props.data.id} type={type.type.name} isCheck={false}/>
+                <TypeTag key={props.poke.id} type={type.type.name} isCheck={false}/>
               </li>
             ))}
           </ol>

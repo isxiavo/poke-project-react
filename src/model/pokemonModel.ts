@@ -8,9 +8,11 @@ export type Pokemon = {
 
   sprites: {
     front_default: string;
-    dream_world: string;
-    official_artwork: string;
-    home: string;
+    other: {
+      dream_world: { front_default: string };
+      ["official-artwork"]: { front_default: string };
+      home: { front_default: string };
+    };
   };
 
   hp: number;
@@ -19,6 +21,14 @@ export type Pokemon = {
   satk: number;
   sdef: number;
   spd: number;
+
+  stats: {
+    base_stat: number;
+    stat: {
+      name: string;
+      url: string;
+    };
+  }[];
 
   types: {
     type: {
@@ -35,6 +45,6 @@ export type Pokemon = {
   }[];
 
   moves: {
-    move: Move
+    move: Move;
   }[];
 };

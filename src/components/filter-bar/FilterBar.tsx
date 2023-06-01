@@ -10,11 +10,11 @@ import { Pokemon } from "../../model/pokemonModel";
 import AbilitiesFilterBox from "./abilities-filterbox/AbilitiesFilterBox";
 
 interface FilterBarProps {
-
+  func: () => void;
 }
 
-const basePokemonList: Pokemon[] = [];
 let isBaseReady = false;
+const basePokemonList: Pokemon[] = [];
 const typesList: string[] = [];
 const abilitiesList: string[] = [];
 const movesList: string[] = [];
@@ -35,11 +35,10 @@ const FilterBar: FC<FilterBarProps> = (props) => {
       pokeCtx.pokemons!.map((unit) => basePokemonList.push(unit));
       isBaseReady = true;
     }
-    pokeCtx.setPokemons?.((old) => (old = basePokemonList));
 
-    pokeCtx.setPokemons?.(
-      () => (filterPokemons(basePokemonList, typesList, abilitiesList, movesList, statsCheck))
-    );
+    pokeCtx.pokemons! = filterPokemons(basePokemonList, typesList, abilitiesList, movesList, statsCheck)
+    console.log(pokeCtx.pokemons)
+    props.func()
   }
 
   return (

@@ -1,28 +1,28 @@
-import React, { createContext, useState, useEffect, useContext } from "react"
-import { Pokemon } from "../model/pokemonModel"
+import React, { FC,createContext, useContext, useState, useEffect } from "react"
+import { useQuery } from "@tanstack/react-query"
 import { fetchPokemons } from "../services/fetchPokemons.service"
 import { IPokeList } from "../interfaces/PokeListInterface"
+import { Pokemon } from "../model/pokemonModel"
 
 const PokeListContext = createContext<IPokeList>({})
 
 export function usePokeList() {
   return useContext(PokeListContext);
 }
+interface CTXProps {
 
-export function PokeListProvider ({children}: any) {
+}
 
-  const [pokemons, setPokemons] = useState<Pokemon[]>([])
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [pokeListReady, setPokeListReady] = useState(false);
-  const ctxValue: IPokeList = {pokemons, setPokemons}
+export const PokeListProvider:FC<CTXProps> = ({children}: any) => {
+  
+  const {data: pokemons, isLoading } = useQuery(
+    ['pokemons'], 
+    fetchPokemons
+  )
 
-  function isListRead() {
-    setPokeListReady((old) => old = !old)
-  }
+  //const [pokemons, setPokemons] = useState<Pokemon[]>(pokemonsData!);
 
-  useEffect(() =>{
-    setPokemons(() => fetchPokemons(isListRead))
-  },[])
+  const ctxValue: IPokeList = {pokemons, isLoading}
 
   return (
     <PokeListContext.Provider value={ctxValue}>

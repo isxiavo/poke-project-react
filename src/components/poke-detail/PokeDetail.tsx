@@ -5,7 +5,7 @@ import TypeIcon from "../type-icon/TypeIcon";
 import { colorsLight } from "../../data/pokemonColors";
 
 type Props = {
-  data: Pokemon;
+  poke: Pokemon;
   placeID: number;
   click: () => void;
 };
@@ -13,15 +13,15 @@ type Props = {
 export default function PokeDetail(props: Props) {
 
   const imgs = {
-    default: props.data.sprites.front_default,
-    dreamworld: props.data.sprites.dream_world,
-    official: props.data.sprites.official_artwork,
-    home: props.data.sprites.home,
+    default : props.poke.sprites.front_default,
+    dreamworld : props.poke.sprites.other.dream_world.front_default,
+    official: props.poke.sprites.other["official-artwork"].front_default,
+    home : props.poke.sprites.other.home.front_default
   };
 
   const thumbBG = {
     backgroundColor:
-      colorsLight[props.data.types[0].type.name as keyof typeof colorsLight] || "#000",
+      colorsLight[props.poke.types[0].type.name as keyof typeof colorsLight] || "#000",
   };
 
   function checkImg(img: string) {
@@ -44,23 +44,23 @@ export default function PokeDetail(props: Props) {
             <img src={checkImg(imgs.official)} alt="thumb" />
           </div>
         </td>
-        <td>{props.data.id}</td>
-        <td>{props.data.name}</td>
+        <td>{props.poke.id}</td>
+        <td>{props.poke.name}</td>
         <td>
           <div className="types">
-            {props.data.types.map((type) => (
+            {props.poke.types.map((type) => (
               <div className="type-container">
                 <TypeIcon name={type.type.name} />
               </div>
             ))}
           </div>
         </td>
-        <td>{props.data.hp}</td>
-        <td>{props.data.atk}</td>
-        <td>{props.data.def}</td>
-        <td>{props.data.satk}</td>
-        <td>{props.data.sdef}</td>
-        <td>{props.data.spd}</td>
+        <td>{props.poke.stats[0].base_stat}</td>
+        <td>{props.poke.stats[1].base_stat}</td>
+        <td>{props.poke.stats[2].base_stat}</td>
+        <td>{props.poke.stats[3].base_stat}</td>
+        <td>{props.poke.stats[4].base_stat}</td>
+        <td>{props.poke.stats[5].base_stat}</td>
       </tr>
     </>
   );

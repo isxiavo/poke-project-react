@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, {  FC, useEffect, useState } from "react";
 import "./ListSimple.css";
 import PokeSimple from "../poke-simple/PokeSimple";
 import { Pokemon } from "../../model/pokemonModel";
 import PokeCard from "../poke-card/poke-card";
 import { usePokeList } from "../../context/PokeListContext";
+import { IPokeList } from "../../interfaces/PokeListInterface";
+import FilterBar from "../filter-bar/FilterBar";
 
-interface Props  {
+interface ListSimpleProps  {
   limitList: number;
 }
 
 let currentPokeCard: Pokemon;
 
-export default function ListSimple(props: Props) {
-  const {pokemons} = usePokeList();
+export const ListSimple: FC<ListSimpleProps> = (props) => {
+  const pokeCtx: IPokeList = usePokeList();
   const limit = props.limitList;
   const [offset, setOffset] = useState(limit);
   const [cardOpen, setCardOpen] = useState(false);
@@ -33,10 +35,11 @@ export default function ListSimple(props: Props) {
 
   return (
     <div className="SimpleList">
+      <FilterBar func={morePokemons}></FilterBar>
       <ol className="OList">
-        {pokemons!.map((poke: Pokemon, index: number) => {
+        {!pokeCtx.isLoading! && pokeCtx.pokemons!.map((poke: Pokemon, index: number) => {
           if (index < offset) {
-            return <PokeSimple data={poke} key={poke.id} click={()=>setPokeCard(poke)}></PokeSimple>;
+            return <PokeSimple poke={poke} key={poke.id} click={()=>setPokeCard(poke)}></PokeSimple>;
           }else {
             return null
           }

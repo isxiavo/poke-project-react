@@ -17,9 +17,10 @@ export const filterPokemons = (
   filterStats: checkStatsType
 ) => {
   let newLista: Pokemon[] = [];
-  lista.map(unit => newLista.push(unit))
+  lista.map((unit) => newLista.push(unit));
 
-  if (filterTypes.length > 0) {
+  // TYPES FILTER
+  if (filterTypes.length > 0) { 
     newLista = newLista.filter((poke) => {
       if (filterTypes.length < 2) {
         if (filterTypes[0] === "any") {
@@ -51,7 +52,8 @@ export const filterPokemons = (
     });
   }
 
-  if (filterAbilities.length > 0) {
+  // ABILITIES FILTER
+  if (filterAbilities.length > 0) { 
     newLista = newLista.filter((poke) => {
       if (filterAbilities.length < 2) {
         return poke.abilities.some(
@@ -67,26 +69,26 @@ export const filterPokemons = (
       }
     });
   }
-  
-  if (filterMoves.length > 0) {
-    
-    newLista = newLista.filter((poke) => {
 
-      return (
-        filterMoves.every((val) =>
-          poke.moves.some((ele) => ele.move.name === val)
-        ) //   SOME É UM OU OUTRO
-      );
+  // MOVES FILTER
+  if (filterMoves.length > 0) { 
+    newLista = newLista.filter((poke) => {
+      return filterMoves.every((val) =>
+        poke.moves.some((ele) => ele.move.name === val)
+      ); //   SOME É UM OU OUTRO
     });
   }
 
-  for (const [statName, statValue] of Object.entries(filterStats)) {
-    // loop check for stats (MIN-MAX)
+  // STATS FILTER
+  for (const [statName, statValue] of Object.entries(filterStats)) { 
     if (statName !== undefined) {
       newLista = newLista.filter((poke) => {
         return (
-          Number(poke[statName as keyof typeof poke]) >= statValue.min &&
-          Number(poke[statName as keyof typeof poke]) <= statValue.max
+          Number(poke.stats.find((statContainer) => statContainer.stat.name)?.base_stat) 
+          >= statValue.min 
+          &&
+          Number(poke.stats.find((statContainer) => statContainer.stat.name)?.base_stat) 
+          <= statValue.max
         );
       });
     }

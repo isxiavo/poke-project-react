@@ -6,12 +6,12 @@
   position: fixed;
   padding: 1.5rem;
   width: 20rem;
-  height:100dvh;
+  height:100%;
   z-index: 1;
   top: 0;
   right: 0;
   background-color: white;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .filterbar hr{

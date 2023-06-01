@@ -1,7 +1,8 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import './AbilitiesFilterBox.css'
 import { fetchAbilities } from '../../../services/fetchAbilities.service';
-import { Ability } from '../../../model/AbilityModel ';
+import { Ability } from '../../../model/abilityModel';
 import AbilityTagFilter from './abilities-tagfilter/AbilityTagFilter';
 
 
@@ -11,12 +12,7 @@ interface AbilitiesFilterBoxProps {
 
 const AbilitiesFilterBox: FC<AbilitiesFilterBoxProps> = (props) => {
 
-  const [abilitiesList, setAbilitiesList] = useState<Ability[]>([])
-  const [abilitiesListReady, setAbilitiesListReady] = useState(false);
-
-  function isAbilitiesListReady() {
-    setAbilitiesListReady((old) => old = !old)
-  }
+  const {data: abilitiesList, isLoading} = useQuery(['abilities'], fetchAbilities)
 
   function checkAbility(abilityName: string, isChecked: boolean) {
     if(isChecked) {
@@ -28,16 +24,12 @@ const AbilitiesFilterBox: FC<AbilitiesFilterBoxProps> = (props) => {
     console.log(props.abilitiesListProp)
   }
 
-  useEffect(() => {
-    setAbilitiesList(() => fetchAbilities(isAbilitiesListReady))
-  },[])
-
   return (
     <div className='abilities-filterbox'>
       <h3>ABILITIES</h3>
       <input type='text' placeholder='search'/>
       <div className='abilities-container'>
-        {abilitiesListReady && abilitiesList.map((ability,i) =>
+        {!isLoading && abilitiesList!.map((ability,i) =>
         <AbilityTagFilter name={ability.name} placeID={i} check={checkAbility}></AbilityTagFilter>)}
       </div>
     </div>
