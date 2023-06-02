@@ -1,5 +1,5 @@
 import  React  from "react";
-import { Pokemon } from "../model/pokemonModel";
+import { Pokemon } from "./pokemonType";
 
 export interface IPokeList {
   pokemons?: Pokemon[];

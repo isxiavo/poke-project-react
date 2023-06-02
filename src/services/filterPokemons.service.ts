@@ -1,12 +1,12 @@
-import { Pokemon } from "../model/pokemonModel";
+import { Pokemon } from "../model/pokemonType";
 
 type checkStatsType = {
-  hp?: { min: number; max: number };
-  atk?: { min: number; max: number };
-  def?: { min: number; max: number };
-  satk?: { min: number; max: number };
-  sdef?: { min: number; max: number };
-  spd?: { min: number; max: number };
+  "hp"?: { min: number; max: number };
+  "attack"?: { min: number; max: number };
+  "defense"?: { min: number; max: number };
+  "special-attack"?: { min: number; max: number };
+  "special-defense"?: { min: number; max: number };
+  "speed"?: { min: number; max: number };
 };
 
 export const filterPokemons = (

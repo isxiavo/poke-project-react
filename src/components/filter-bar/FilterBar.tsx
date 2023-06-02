@@ -1,17 +1,15 @@
 import React, { FC } from "react";
 import "./FilterBar.css";
-import { usePokeList } from "../../context/PokeListContext";
+import { usePokeList } from "../../pages/Pokedex/context/PokeListContext";
 import { filterPokemons } from "../../services/filterPokemons.service";
 import StatsFilterBox from "./stats-filterbox/StatsFilterBox";
 import TypesFilterBox from "./types-filterbox/TypesFilterBox";
 import MovesFilterBox from "./moves-filterbox/MovesFilterBox";
-import { IPokeList } from "../../interfaces/PokeListInterface";
-import { Pokemon } from "../../model/pokemonModel";
+import { IPokeList } from "../../model/pokeListInterface";
+import { Pokemon } from "../../model/pokemonType";
 import AbilitiesFilterBox from "./abilities-filterbox/AbilitiesFilterBox";
 
-interface FilterBarProps {
-  func: () => void;
-}
+
 
 let isBaseReady = false;
 const basePokemonList: Pokemon[] = [];
@@ -19,15 +17,19 @@ const typesList: string[] = [];
 const abilitiesList: string[] = [];
 const movesList: string[] = [];
 const statsCheck = {
-  hp: { min: 0, max: 0 },
-  atk: { min: 0, max: 0 },
-  def: { min: 0, max: 0 },
-  satk: { min: 0, max: 0 },
-  sdef: { min: 0, max: 0 },
-  spd: { min: 0, max: 0 },
+  hp: { min: 0, max: 9999 },
+  atk: { min: 0, max: 9999 },
+  def: { min: 0, max: 9999 },
+  satk: { min: 0, max: 9999 },
+  sdef: { min: 0, max: 9999 },
+  spd: { min: 0, max: 9999 },
 };
 
-const FilterBar: FC<FilterBarProps> = (props) => {
+interface FilterBarProps {
+  func: () => void;
+}
+
+export const FilterBar: FC<FilterBarProps> = (props) => {
   const pokeCtx: IPokeList = usePokeList();
 
   function applyFilter() {
@@ -55,4 +57,3 @@ const FilterBar: FC<FilterBarProps> = (props) => {
     </div>
   );
 };
-export default FilterBar;

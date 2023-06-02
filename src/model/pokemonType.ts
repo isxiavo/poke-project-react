@@ -1,4 +1,4 @@
-import { Move } from "./moveModel";
+import { Move } from "./moveType";
 
 export type Pokemon = {
   id: number;
@@ -15,15 +15,9 @@ export type Pokemon = {
     };
   };
 
-  hp: number;
-  atk: number;
-  def: number;
-  satk: number;
-  sdef: number;
-  spd: number;
-
   stats: {
     base_stat: number;
+    effort: number;
     stat: {
       name: string;
       url: string;

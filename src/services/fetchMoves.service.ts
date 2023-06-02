@@ -1,4 +1,4 @@
-import { Move } from "../model/moveModel";
+import { Move } from "../model/moveType";
 
 export function fetchMoves(): Promise<Move[]>{
   const amount: number = 920;

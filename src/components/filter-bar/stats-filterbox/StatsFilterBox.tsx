@@ -33,7 +33,7 @@ const StatsFilterBox: FC<StatsFilterBoxProps> = (props) => {
             <input
               className="textInput"
               type="number"
-              min={0}
+              min={0} 
               max={100}
               placeholder="0"
               onChange={(e)=> updateStatsCheck(stat,'min',parseInt(e.target.value))}
@@ -42,7 +42,7 @@ const StatsFilterBox: FC<StatsFilterBoxProps> = (props) => {
               className="textInput"
               type="number"
               min={0}
-              max={100}
+              max={9999}
               placeholder="0"
               onChange={(e)=> updateStatsCheck(stat,'max',parseInt(e.target.value))}
             />

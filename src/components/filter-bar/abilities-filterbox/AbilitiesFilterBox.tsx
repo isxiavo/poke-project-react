@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import './AbilitiesFilterBox.css'
 import { fetchAbilities } from '../../../services/fetchAbilities.service';
-import { Ability } from '../../../model/abilityModel';
 import AbilityTagFilter from './abilities-tagfilter/AbilityTagFilter';
 
 

@@ -1,4 +1,4 @@
-import { Pokemon } from "../model/pokemonModel";
+import { Pokemon } from "../model/pokemonType";
 
 export function fetchPokemons(): Promise<Pokemon[]>{ // pedindo uma função de retorno vazio que vai alterar o estado do loading em App
   const limit = 1100;

@@ -27,7 +27,7 @@
   border-radius: 100%;
 }
 
-.card img{
+.card > img{
   width: 50%;
   position:absolute;
 }
@@ -93,14 +93,13 @@
   margin-top: 1rem;
   width: 3rem;
   height: 3rem;
-  position:relative;
   box-shadow: black .5px 1px 2px 1px;
 }
 .card h2{
   width: 100%;
 }
 
-.card  h3{
+.card h3{
   color: rgb(117, 117, 117);
 }
 

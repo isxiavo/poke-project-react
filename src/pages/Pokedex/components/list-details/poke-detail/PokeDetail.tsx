@@ -1,8 +1,8 @@
 import React from "react";
 import "./PokeDetail.css";
-import { Pokemon } from "../../model/pokemonModel";
-import TypeIcon from "../type-icon/TypeIcon";
-import { colorsLight } from "../../data/pokemonColors";
+import { Pokemon } from "../../../../../model/pokemonType";
+import TypeIcon from "../../../../../components/type-icon/TypeIcon";
+import { colorsLight } from "../../../../../data/pokemonColors";
 
 type Props = {
   poke: Pokemon;

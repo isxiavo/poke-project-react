@@ -3,7 +3,6 @@ import './MovesFilterBox.css';
 import { useQuery } from '@tanstack/react-query'
 import { fetchMoves } from '../../../services/fetchMoves.service';
 import MoveTagFilter from './move-tagfilter/MoveTagFilter';
-import { Move } from '../../../model/moveModel';
 
 interface MovesFilterBoxProps {
   movesListProp: string[];

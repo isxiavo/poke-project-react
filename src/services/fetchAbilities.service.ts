@@ -1,4 +1,4 @@
-import { Ability } from "../model/abilityModel";
+import { Ability } from "../model/abilityType";
 
 export function fetchAbilities(): Promise<Ability[]>{
   const amount: number = 920;
