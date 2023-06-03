@@ -1,6 +1,6 @@
 import { Pokemon } from "../model/pokemonType";
 
-export const sortPokemonList = (
+export const sortPokemons = (
   list: Pokemon[],
   key: string,
   stat: boolean,

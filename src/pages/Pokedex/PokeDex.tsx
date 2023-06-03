@@ -24,9 +24,8 @@ const PokeDex: FC<PokeDexProps> = (props) => {
   return (
     <div className="pokedex">
       <button onClick={() => changeListState(false)}>A</button>
-      <FilterBar func={() => changeListState(true)}></FilterBar>
       {listState === 0 && (
-        <span>AAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
+        <div className="loading">AAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>
       )}  
       {listState === 1 && (
         <ListSimple limitList={50} listIndex={0}></ListSimple>
@@ -34,6 +33,7 @@ const PokeDex: FC<PokeDexProps> = (props) => {
       {listState === 2 && (
         <ListDetails limitList={50} listIndex={1}></ListDetails>
       )}
+      <FilterBar func={() => changeListState(true)}></FilterBar>
     </div>
   );
 };

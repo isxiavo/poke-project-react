@@ -3,7 +3,7 @@ import "./ListDetails.css";
 import PokeDetail from "./poke-detail/PokeDetail";
 import { Pokemon } from "../../../../model/pokemonType";
 import PokeCard from "../../../../components/poke-card/poke-card";
-import { sortPokemonList } from "../../../../services/sortPokemonList.service";
+import { sortPokemons } from "../../../../services/sortPokemonList.service";
 import { usePokeList } from "../../context/PokeListContext";
 
 type ListDetailsProps = {
@@ -49,13 +49,13 @@ export const ListDetails: FC<ListDetailsProps> = (props) => {
           <tr>
             <th className="thThumb"></th>
             <th>
-              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "id", false, updateList)}>
+              <button onClick={() => sortPokemons(pokeCtx.pokemons!, "id", false, updateList)}>
                 <span>#</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "name", false, updateList)}>
+              <button onClick={() => sortPokemons(pokeCtx.pokemons!, "name", false, updateList)}>
                 <span>NAME</span>
                 <span style={setaStyle}>▼</span>
               </button>
@@ -67,37 +67,37 @@ export const ListDetails: FC<ListDetailsProps> = (props) => {
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "hp", true, updateList)}>
+              <button onClick={() => sortPokemons(pokeCtx.pokemons!, "hp", true, updateList)}>
                 <span>HP</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "attack", true, updateList)}>
+              <button onClick={() => sortPokemons(pokeCtx.pokemons!, "attack", true, updateList)}>
                 <span>ATK</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "defense", true, updateList)}>
+              <button onClick={() => sortPokemons(pokeCtx.pokemons!, "defense", true, updateList)}>
                 <span>DEF</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "special-attack", true, updateList)}>
+              <button onClick={() => sortPokemons(pokeCtx.pokemons!, "special-attack", true, updateList)}>
                 <span>SATK</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "special-defense", true, updateList)}>
+              <button onClick={() => sortPokemons(pokeCtx.pokemons!, "special-defense", true, updateList)}>
                 <span>SDEF</span>
                 <span style={setaStyle}>▼</span>
               </button>
             </th>
             <th>
-              <button onClick={() => sortPokemonList(pokeCtx.pokemons!, "speed", true, updateList)}>
+              <button onClick={() => sortPokemons(pokeCtx.pokemons!, "speed", true, updateList)}>
                 <span>SPD</span>
                 <span style={setaStyle}>▼</span>
               </button>
