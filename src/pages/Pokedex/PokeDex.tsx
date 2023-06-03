@@ -8,6 +8,7 @@ interface PokeDexProps {}
 
 const PokeDex: FC<PokeDexProps> = (props) => {
   const [listState, setListState] = useState(1); // true simples / false detalhes
+  const [showFilterbar, setShowFilterBar] = useState(false)
 
   const changeListState = (altering?: boolean) => {
     const currentListState: number = listState;
@@ -20,6 +21,10 @@ const PokeDex: FC<PokeDexProps> = (props) => {
     }
     
   };
+  const changeFilterBarState = () => {
+    setShowFilterBar(old => old = !old)
+    console.log('alterou')
+  }
 
   return (
     <div className="pokedex">
@@ -33,7 +38,13 @@ const PokeDex: FC<PokeDexProps> = (props) => {
       {listState === 2 && (
         <ListDetails limitList={50} listIndex={1}></ListDetails>
       )}
-      <FilterBar func={() => changeListState(true)}></FilterBar>
+      {showFilterbar && 
+        <FilterBar 
+          applyFilter={() => changeListState(true)}
+          hideShow={changeFilterBarState}
+        />
+      }
+      <button onClick={changeFilterBarState}>B</button>
     </div>
   );
 };

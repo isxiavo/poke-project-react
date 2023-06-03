@@ -7,7 +7,7 @@ export const sortPokemons = (
   func: () => void
 ) => {
   function Sort(a: Pokemon, b: Pokemon) {
-    console.log(list)
+    //console.log(list)
     if (stat) {
       if (      
           Number(a.stats.find((statContainer) => statContainer.stat.name === key)!.base_stat)

@@ -9,8 +9,6 @@ import { IPokeList } from "../../model/pokeListInterface";
 import { Pokemon } from "../../model/pokemonType";
 import AbilitiesFilterBox from "./abilities-filterbox/AbilitiesFilterBox";
 
-
-
 let isBaseReady = false;
 const basePokemonList: Pokemon[] = [];
 const typesList: string[] = [];
@@ -26,33 +24,43 @@ const statsCheck = {
 };
 
 interface FilterBarProps {
-  func: () => void;
+  applyFilter: () => void;
+  hideShow: () => void;
 }
 
 export const FilterBar: FC<FilterBarProps> = (props) => {
   const pokeCtx: IPokeList = usePokeList();
 
   function applyFilter() {
-    if (!isBaseReady) { // primeiro set
+    if (!isBaseReady) {
+      // primeiro set
       pokeCtx.pokemons!.map((unit) => basePokemonList.push(unit));
       isBaseReady = true;
     }
 
-    pokeCtx.pokemons! = filterPokemons(basePokemonList, typesList, abilitiesList, movesList, statsCheck)
-    console.log(pokeCtx.pokemons)
-    props.func()
+    pokeCtx.pokemons! = filterPokemons(
+      basePokemonList,
+      typesList,
+      abilitiesList,
+      movesList,
+      statsCheck
+    );
+    console.log(pokeCtx.pokemons);
+    props.applyFilter();
   }
 
   return (
-    <div className='filterbar'>
-      <button className="hideButton" style={{'marginRight': 'auto'}}>→</button>
+    <div className="filterbar">
+      <button className="hideButton" onClick={()=> props.hideShow}>→</button>
       <TypesFilterBox checkedTypes={typesList}></TypesFilterBox>
       <hr></hr>
       <StatsFilterBox statsCheckProp={statsCheck}></StatsFilterBox>
       <hr></hr>
-      <AbilitiesFilterBox abilitiesListProp={abilitiesList}></AbilitiesFilterBox>
+      <AbilitiesFilterBox
+        abilitiesListProp={abilitiesList}
+      ></AbilitiesFilterBox>
       <hr></hr>
-      <MovesFilterBox movesListProp={movesList}/>
+      <MovesFilterBox movesListProp={movesList} />
       <button onClick={applyFilter}>Apply</button>
     </div>
   );
