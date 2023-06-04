@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import "./TypeTag.css";
 import { colorsDefault } from "../../data/pokemonColors";
 
-interface Props {
+interface TypeTagProps {
   type: string;
   isCheck: boolean;
   func?: (checkValue: boolean, type: string) => void;
 }
 
-export default function TypeTag(props: Props) {
+export const TypeTag: FC<TypeTagProps> = (props) => {
   
   const typeColorStyle = {
     backgroundColor:

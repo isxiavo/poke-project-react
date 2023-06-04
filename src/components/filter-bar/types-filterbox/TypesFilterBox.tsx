@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import "./TypesFilterBox.css";
-import TypeTag from "../../type-tag/TypeTag";
+import { TypeTag } from "../../type-tag/TypeTag";
 
 interface TypesFilterBoxProps {
   checkedTypes: string[];

@@ -9,12 +9,12 @@
   justify-self: center;
   justify-content: center;
 }
-.PokeSimple:hover {
+/* .PokeSimple:hover {
   animation: sizing .2s both;
   cursor: pointer;
-}
+} */
 
-.PokeSimple .Text{
+.PokeSimple > .Text{
   display: flex;
   text-transform: capitalize;
   align-items: center;
@@ -59,7 +59,7 @@
   padding-right: .3rem;
 }
 
-.PokeSimple .Thumbnail img {
+.PokeSimple .Thumbnail > img {
   max-width: 70%;
   max-height: 100%;
   margin-left: auto;

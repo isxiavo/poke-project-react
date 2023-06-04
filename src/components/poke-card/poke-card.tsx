@@ -30,7 +30,7 @@ const PokeCard: FC<PokeCardProps> = (props) => {
                 return(
                   <div className='type-group'>
                     <div className='type-container'>
-                      <TypeIcon name={type.type.name}/>
+                      <TypeIcon name={type.type.name} key={props.pokemon.id + index}/>
                     </div>
                     <h3>{props.pokemon.types[index].type.name}</h3>
                   </div>
