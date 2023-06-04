@@ -24,7 +24,7 @@ const statsCheck = {
 };
 
 interface FilterBarProps {
-
+  updatePokedex: () => void;
 }
 
 const FilterBar: FC<FilterBarProps> = (props) => {
@@ -45,9 +45,10 @@ const FilterBar: FC<FilterBarProps> = (props) => {
       movesList,
       statsCheck
     );
+    props.updatePokedex();
     console.log(pokeCtx.pokemons);
 
-  },[pokeCtx.pokemons])
+  },[pokeCtx.pokemons, props])
 
   const hideShow = () => {
     setIsShow((old) => !old)

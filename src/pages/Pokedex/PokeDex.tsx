@@ -8,10 +8,15 @@ interface PokeDexProps {}
 
 const PokeDex: FC<PokeDexProps> = (props) => {
   const [listState, setListState] = useState(1); // true simples / false detalhes
+  const [, setComponentState] = useState(false); // useState just to force this component update update
 
-  const changeListState = useCallback(() => {
+  const changeListState = () => {
     setListState((old) => old === 1 ? 2 : 1) // muda a lista para a outra que não está ativa
-  },[]);
+  };
+
+  const forceUpdate = useCallback(() => {
+    setComponentState((old) => !old)
+  },[])
 
   return (
     <div className="pokedex">
@@ -25,7 +30,7 @@ const PokeDex: FC<PokeDexProps> = (props) => {
       {listState === 2 && (
         <ListDetails limitList={50} listIndex={1} />
       )}     
-      <FilterBar />
+      <FilterBar updatePokedex={forceUpdate}/>
     </div>
   );
 };
