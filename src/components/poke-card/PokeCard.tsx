@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './poke-card.css'
+import './PokeCard.css'
 import { Pokemon } from '../../model/pokemonType';
 import TypeIcon from '../type-icon/TypeIcon';
 
@@ -9,7 +9,7 @@ interface PokeCardProps {
   click:()=>void;
 }
 
-export const PokeCard: FC<PokeCardProps> = (props) => {
+const PokeCard: FC<PokeCardProps> = (props) => {
 
   return (
     <div className='bg' onClick={props.click}>
@@ -51,3 +51,5 @@ export const PokeCard: FC<PokeCardProps> = (props) => {
     </div>
   )
 };
+
+export default React.memo(PokeCard)

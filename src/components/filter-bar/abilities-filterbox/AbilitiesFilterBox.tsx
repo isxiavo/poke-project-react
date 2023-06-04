@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import './AbilitiesFilterBox.css'
 import { fetchAbilities } from '../../../services/fetchAbilities.service';
@@ -12,6 +12,7 @@ interface AbilitiesFilterBoxProps {
 const AbilitiesFilterBox: FC<AbilitiesFilterBoxProps> = (props) => {
 
   const {data: abilitiesList, isLoading} = useQuery(['abilities'], fetchAbilities)
+  useMemo(()=>abilitiesList,[abilitiesList])
 
   function checkAbility(abilityName: string, isChecked: boolean) {
     if(isChecked) {

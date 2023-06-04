@@ -1,15 +1,15 @@
-import React, {  FC, useState, useMemo } from "react";
+import React, {  FC, useState, useCallback } from "react";
 import "./PokeSimple.css";
 import { TypeTag } from "../../../../../components/type-tag/TypeTag";
 import { Pokemon } from "../../../../../model/pokemonType";
 import { colorsLight } from "../../../../../data/pokemonColors";
-import { PokeCard } from "../../../../../components/poke-card/poke-card";
+import PokeCard from "../../../../../components/poke-card/PokeCard";
 
 type PokeSimpleProps = {
   poke: Pokemon;
 }
 
-export const PokeSimple: FC<PokeSimpleProps> = (props) => {
+const PokeSimple: FC<PokeSimpleProps> = (props) => {
 
   const imgs = {
     default : props.poke.sprites.front_default,
@@ -24,9 +24,9 @@ export const PokeSimple: FC<PokeSimpleProps> = (props) => {
 
   const [pokeCard, setPokeCard] = useState(false)
 
-  const changePokeCardState = () => {
+  const changePokeCardState = useCallback(() => {
     setPokeCard((old) => old = !old)
-  }
+  },[])
 
   function checkImg(img: string) {
     if (img) {
@@ -43,9 +43,6 @@ export const PokeSimple: FC<PokeSimpleProps> = (props) => {
     }
   }
 
-  const MemoTypeTag = useMemo(() => TypeTag,[])
-  const MemoPokeCard = useMemo(() => PokeCard,[])
-
   return (
     <li className="PokeSimple" style={style} onClick={changePokeCardState}>
       <div className="Text">
@@ -57,7 +54,7 @@ export const PokeSimple: FC<PokeSimpleProps> = (props) => {
           <ol className="TypeList">
             {props.poke.types.map((type, index) => (
               <li>
-                <MemoTypeTag key={props.poke.id + index} type={type.type.name} isCheck={false}/>
+                <TypeTag key={props.poke.id + index} type={type.type.name} isCheck={false}/>
               </li>
             ))}
           </ol>
@@ -70,11 +67,13 @@ export const PokeSimple: FC<PokeSimpleProps> = (props) => {
         </div>
       </div>
       {pokeCard && (
-        <MemoPokeCard
+        <PokeCard
           pokemon={props.poke}
           click={()=>changePokeCardState}
-        ></MemoPokeCard>
+        />
       )}
     </li>
   );
 }
+
+export default React.memo(PokeSimple)

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import './MovesFilterBox.css';
 import { useQuery } from '@tanstack/react-query'
 import { fetchMoves } from '../../../services/fetchMoves.service';
@@ -11,6 +11,7 @@ interface MovesFilterBoxProps {
 export const MovesFilterBox: FC<MovesFilterBoxProps> = (props) => {
 
   const {data: movesList, isLoading} = useQuery(['moves'], fetchMoves)
+  useMemo(()=>movesList,[movesList])
 
   function checkMove(moveName: string, isChecked: boolean) {
     if(isChecked) {

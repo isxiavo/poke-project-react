@@ -1,6 +1,6 @@
-import React, {  FC, useState, useCallback } from "react";
+import React, {  FC, useState } from "react";
 import "./ListSimple.css";
-import { PokeSimple } from "./poke-simple/PokeSimple";
+import PokeSimple from "./poke-simple/PokeSimple";
 import { Pokemon } from "../../../../model/pokemonType";
 import { usePokeList } from "../../context/PokeListContext";
 
@@ -18,14 +18,12 @@ export const ListSimple: FC<ListSimpleProps> = (props) => {
     setOffset((old) => old + limit);
   }
 
-  const MemoPokeSimple = useCallback(PokeSimple, [])
-
   return (
     <div className="SimpleList">
       <ol className="OList">
         {(!pokeCtx.isLoading! && props.listIndex === 0) && pokeCtx.pokemons!.map((poke: Pokemon, index: number) => {
           if (index < offset) {
-            return <MemoPokeSimple poke={poke} key={poke.id}></MemoPokeSimple>;
+            return <PokeSimple poke={poke} key={poke.id}></PokeSimple>;
           }else {
             return null
           }

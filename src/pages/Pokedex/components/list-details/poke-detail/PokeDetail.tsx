@@ -1,8 +1,8 @@
-import React, { FC, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 import "./PokeDetail.css";
 import { Pokemon } from "../../../../../model/pokemonType";
 import TypeIcon from "../../../../../components/type-icon/TypeIcon";
-import { PokeCard } from "../../../../../components/poke-card/poke-card";
+import PokeCard from "../../../../../components/poke-card/PokeCard";
 import { colorsLight } from "../../../../../data/pokemonColors";
 
 type PokeDetailProps = {
@@ -10,7 +10,7 @@ type PokeDetailProps = {
   placeID: number;
 };
 
-export const PokeDetail: FC<PokeDetailProps> = (props) => {
+const PokeDetail: FC<PokeDetailProps> = (props) => {
 
   const imgs = {
     default : props.poke.sprites.front_default,
@@ -38,10 +38,9 @@ export const PokeDetail: FC<PokeDetailProps> = (props) => {
     }
   }
 
-  const changePokeCardState = () => {
+  const changePokeCardState = useCallback(() => {
     setPokeCard(old => !old);
-    console.log(pokeCard);
-  }
+  },[])
 
   return (
     <>
@@ -72,9 +71,11 @@ export const PokeDetail: FC<PokeDetailProps> = (props) => {
       {pokeCard && (
         <PokeCard
           pokemon={props.poke}
-          click={() => changePokeCardState}
-        ></PokeCard>
+          click={changePokeCardState}
+        />
       )}
     </>
   );
 }
+
+export default React.memo(PokeDetail)

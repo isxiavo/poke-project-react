@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useState } from "react";
 import "./FilterBar.css";
 import { StatsFilterBox } from "./stats-filterbox/StatsFilterBox";
 import { TypesFilterBox } from "./types-filterbox/TypesFilterBox";
@@ -24,11 +24,12 @@ const statsCheck = {
 };
 
 interface FilterBarProps {
-  hideShow: () => void;
+
 }
 
-export const FilterBar: FC<FilterBarProps> = (props) => {
+const FilterBar: FC<FilterBarProps> = (props) => {
   const pokeCtx: IPokeList = usePokeList();
+  const [isShown, setIsShow] = useState(false);
 
   const applyFilter = useCallback(() => {
 
@@ -48,19 +49,34 @@ export const FilterBar: FC<FilterBarProps> = (props) => {
 
   },[pokeCtx.pokemons])
 
+  const hideShow = () => {
+    setIsShow((old) => !old)
+  }
+
   return (
-    <div className="filterbar">
-      <button className="hideButton" onClick={()=> props.hideShow}>→</button>
-      <TypesFilterBox checkedTypes={typesList}></TypesFilterBox>
-      <hr></hr>
-      <StatsFilterBox statsCheckProp={statsCheck}></StatsFilterBox>
-      <hr></hr>
-      <AbilitiesFilterBox
-        abilitiesListProp={abilitiesList}
-      ></AbilitiesFilterBox>
-      <hr></hr>
-      <MovesFilterBox movesListProp={movesList} />
-      <button onClick={applyFilter}>Apply</button>
-    </div>
+    <>
+      {!isShown 
+        ? 
+        <button onClick={hideShow}>B</button> 
+        :
+        <div className="filterbar">
+          <button onClick={hideShow}>←</button>
+          <TypesFilterBox checkedTypes={typesList}></TypesFilterBox>
+          <hr></hr>
+          <StatsFilterBox statsCheckProp={statsCheck}></StatsFilterBox>
+          <hr></hr>
+          <AbilitiesFilterBox
+            abilitiesListProp={abilitiesList}
+          ></AbilitiesFilterBox>
+          <hr></hr>
+          <MovesFilterBox movesListProp={movesList} />
+          <button onClick={applyFilter}>Apply</button>
+        </div>
+      }
+      
+      
+    </>
   );
 };
+
+export default React.memo(FilterBar)
