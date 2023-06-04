@@ -1,16 +1,16 @@
-import React from "react";
+import React, { FC, useState } from "react";
 import "./PokeDetail.css";
 import { Pokemon } from "../../../../../model/pokemonType";
 import TypeIcon from "../../../../../components/type-icon/TypeIcon";
+import { PokeCard } from "../../../../../components/poke-card/poke-card";
 import { colorsLight } from "../../../../../data/pokemonColors";
 
-type Props = {
+type PokeDetailProps = {
   poke: Pokemon;
   placeID: number;
-  click: () => void;
 };
 
-export default function PokeDetail(props: Props) {
+export const PokeDetail: FC<PokeDetailProps> = (props) => {
 
   const imgs = {
     default : props.poke.sprites.front_default,
@@ -24,6 +24,8 @@ export default function PokeDetail(props: Props) {
       colorsLight[props.poke.types[0].type.name as keyof typeof colorsLight] || "#000",
   };
 
+  const [pokeCard, setPokeCard] = useState(false);
+
   function checkImg(img: string) {
     if (img) {
       return img;
@@ -36,9 +38,14 @@ export default function PokeDetail(props: Props) {
     }
   }
 
+  const changePokeCardState = () => {
+    setPokeCard(old => !old);
+    console.log(pokeCard);
+  }
+
   return (
     <>
-      <tr className="pokeDetail" onClick={props.click} style={props.placeID % 2 === 0 ? {'backgroundColor': 'lightgray'} : {'backgroundColor': 'white'}}>
+      <tr className="pokeDetail" onClick={()=>changePokeCardState()} style={props.placeID % 2 === 0 ? {'backgroundColor': 'lightgray'} : {'backgroundColor': 'white'}}>
         <td className="tdImg">
           <div className="thumbnail" style={thumbBG}>
             <img src={checkImg(imgs.official)} alt="thumb" />
@@ -62,6 +69,12 @@ export default function PokeDetail(props: Props) {
         <td>{props.poke.stats[4].base_stat}</td>
         <td>{props.poke.stats[5].base_stat}</td>
       </tr>
+      {pokeCard && (
+        <PokeCard
+          pokemon={props.poke}
+          click={() => changePokeCardState}
+        ></PokeCard>
+      )}
     </>
   );
 }

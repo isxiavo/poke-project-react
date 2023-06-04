@@ -8,7 +8,7 @@ interface MovesFilterBoxProps {
   movesListProp: string[];
 }
 
-const MovesFilterBox: FC<MovesFilterBoxProps> = (props) => {
+export const MovesFilterBox: FC<MovesFilterBoxProps> = (props) => {
 
   const {data: movesList, isLoading} = useQuery(['moves'], fetchMoves)
 
@@ -33,4 +33,3 @@ const MovesFilterBox: FC<MovesFilterBoxProps> = (props) => {
     </div>
   )
 }
-export default MovesFilterBox;

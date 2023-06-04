@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useCallback } from "react";
 import "./PokeDex.css";
 import { ListDetails } from "./components/list-details/ListDetails";
 import { ListSimple } from "./components/list-simple/ListSimple";
@@ -10,37 +10,33 @@ const PokeDex: FC<PokeDexProps> = (props) => {
   const [listState, setListState] = useState(1); // true simples / false detalhes
   const [showFilterbar, setShowFilterBar] = useState(false)
 
-  const changeListState = (altering?: boolean) => {
-    const currentListState: number = listState;
-    if(altering) {
-      setListState(() => 0) // set loading state
-      setTimeout(() => {setListState(() => currentListState)}, 1000) // re-set current lista state
-    }
-    else{
-      setListState((old) => old === 1 ? 2 : 1) // muda a lista para a outra que não está ativa
-    }
-    
-  };
-  const changeFilterBarState = () => {
+  const changeListState = useCallback(() => {
+    setListState((old) => old === 1 ? 2 : 1) // muda a lista para a outra que não está ativa
+  },[]);
+  
+  const changeFilterBarState = useCallback(() => {
     setShowFilterBar(old => old = !old)
     console.log('alterou')
-  }
+  },[])
+
+  const MemoListSimple = useCallback(ListSimple, [])
+  const MemoListDetails = useCallback(ListDetails, [])
+  const MemoFilterBar = useCallback(FilterBar, [])
 
   return (
     <div className="pokedex">
-      <button onClick={() => changeListState(false)}>A</button>
+      <button onClick={() => changeListState()}>A</button>
       {listState === 0 && (
         <div className="loading">AAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>
       )}  
       {listState === 1 && (
-        <ListSimple limitList={50} listIndex={0}></ListSimple>
+        <MemoListSimple limitList={50} listIndex={0}></MemoListSimple>
       )}  
       {listState === 2 && (
-        <ListDetails limitList={50} listIndex={1}></ListDetails>
+        <MemoListDetails limitList={50} listIndex={1}></MemoListDetails>
       )}
       {showFilterbar && 
-        <FilterBar 
-          applyFilter={() => changeListState(true)}
+        <MemoFilterBar 
           hideShow={changeFilterBarState}
         />
       }

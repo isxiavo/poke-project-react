@@ -1,15 +1,15 @@
-import React, { useState, useMemo } from "react";
+import React, {  FC, useState, useMemo } from "react";
 import "./PokeSimple.css";
 import { TypeTag } from "../../../../../components/type-tag/TypeTag";
 import { Pokemon } from "../../../../../model/pokemonType";
 import { colorsLight } from "../../../../../data/pokemonColors";
-import PokeCard from "../../../../../components/poke-card/poke-card";
+import { PokeCard } from "../../../../../components/poke-card/poke-card";
 
-type Props = {
+type PokeSimpleProps = {
   poke: Pokemon;
 }
 
-export default function PokeSimple(props: Props) {
+export const PokeSimple: FC<PokeSimpleProps> = (props) => {
 
   const imgs = {
     default : props.poke.sprites.front_default,

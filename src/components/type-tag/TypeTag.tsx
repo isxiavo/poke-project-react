@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
 import "./TypeTag.css";
 import { colorsDefault } from "../../data/pokemonColors";
 
@@ -16,28 +16,23 @@ export const TypeTag: FC<TypeTagProps> = (props) => {
   };
 
   const [isChecked, setIsChecked] = useState(false);
-  const [className, setClassName] = useState("");
 
   function check() {
-    setIsChecked((old) => old = !isChecked)
+    // send inverted value first cause States takes too long to change
+    props.func!(!isChecked, props.type);
+    setIsChecked((old) => !old)
   }
-
-  useEffect(() => {
-    setClassName((old) => old = isChecked ? "typetag-checked" : "typetag-unchecked")
-    props.func?.(isChecked, props.type);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[isChecked])
 
   if (props.isCheck) {
     return (
-      <div className={className} style={typeColorStyle} onClick={check}>
+      <div className={isChecked ? 'typetag-checked' : 'typetag-unchecked'} style={typeColorStyle} onClick={check}>
         {props.type}
       </div>
     );
   }
   else {
     return (
-      <div className={className} style={typeColorStyle}>
+      <div className={'typetag-unchecked'} style={typeColorStyle}>
         {props.type}
       </div>
     );

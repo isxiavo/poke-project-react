@@ -9,7 +9,7 @@ interface PokeCardProps {
   click:()=>void;
 }
 
-const PokeCard: FC<PokeCardProps> = (props) => {
+export const PokeCard: FC<PokeCardProps> = (props) => {
 
   return (
     <div className='bg' onClick={props.click}>
@@ -51,5 +51,3 @@ const PokeCard: FC<PokeCardProps> = (props) => {
     </div>
   )
 };
-
-export default PokeCard;

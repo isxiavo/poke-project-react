@@ -1,8 +1,7 @@
 import React, { FC, useState } from "react";
 import "./ListDetails.css";
-import PokeDetail from "./poke-detail/PokeDetail";
+import { PokeDetail } from "./poke-detail/PokeDetail";
 import { Pokemon } from "../../../../model/pokemonType";
-import PokeCard from "../../../../components/poke-card/poke-card";
 import { sortPokemons } from "../../../../services/sortPokemonList.service";
 import { usePokeList } from "../../context/PokeListContext";
 
@@ -11,14 +10,11 @@ type ListDetailsProps = {
   listIndex: number;
 };
 
-let currentPokeCard: Pokemon;
-
 export const ListDetails: FC<ListDetailsProps> = (props) => { 
   const pokeCtx = usePokeList();
 
   const limit = props.limitList;
   const [offset, setOffset] = useState(limit);
-  const [cardOpen, setCardState] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [update, setUpdate] = useState(false);
 
@@ -28,16 +24,6 @@ export const ListDetails: FC<ListDetailsProps> = (props) => {
 
   function updateList() {
     setUpdate((old) => !old)
-  }
-
-  function setPokeCard(pokemon: Pokemon) {
-    currentPokeCard = pokemon;
-    setCardState((old) => (old = true));
-    console.log(currentPokeCard);
-  }
-
-  function closePokeCard() {
-    setCardState((old) => (old = false));
   }
 
   const setaStyle = { fontSize: ".7rem" };
@@ -110,7 +96,6 @@ export const ListDetails: FC<ListDetailsProps> = (props) => {
                   poke={poke}
                   placeID={index}
                   key={poke.id}
-                  click={() => setPokeCard(poke)}
                 ></PokeDetail>
               );
             } else {
@@ -122,12 +107,7 @@ export const ListDetails: FC<ListDetailsProps> = (props) => {
           ▼
         </button>
       </div>
-      {cardOpen && (
-        <PokeCard
-          pokemon={currentPokeCard}
-          click={() => closePokeCard()}
-        ></PokeCard>
-      )}
+      
     </>
   );
 }

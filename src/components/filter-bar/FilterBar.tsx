@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import "./FilterBar.css";
+import { StatsFilterBox } from "./stats-filterbox/StatsFilterBox";
+import { TypesFilterBox } from "./types-filterbox/TypesFilterBox";
+import { MovesFilterBox } from "./moves-filterbox/MovesFilterBox";
+import { Pokemon } from "../../model/pokemonType";
+import { IPokeList } from "../../model/pokeListInterface";
 import { usePokeList } from "../../pages/Pokedex/context/PokeListContext";
 import { filterPokemons } from "../../services/filterPokemons.service";
-import StatsFilterBox from "./stats-filterbox/StatsFilterBox";
-import TypesFilterBox from "./types-filterbox/TypesFilterBox";
-import MovesFilterBox from "./moves-filterbox/MovesFilterBox";
-import { IPokeList } from "../../model/pokeListInterface";
-import { Pokemon } from "../../model/pokemonType";
 import AbilitiesFilterBox from "./abilities-filterbox/AbilitiesFilterBox";
 
 let isBaseReady = false;
@@ -24,20 +24,19 @@ const statsCheck = {
 };
 
 interface FilterBarProps {
-  applyFilter: () => void;
   hideShow: () => void;
 }
 
 export const FilterBar: FC<FilterBarProps> = (props) => {
   const pokeCtx: IPokeList = usePokeList();
 
-  function applyFilter() {
+  const applyFilter = useCallback(() => {
+
     if (!isBaseReady) {
       // primeiro set
       pokeCtx.pokemons!.map((unit) => basePokemonList.push(unit));
       isBaseReady = true;
     }
-
     pokeCtx.pokemons! = filterPokemons(
       basePokemonList,
       typesList,
@@ -46,8 +45,8 @@ export const FilterBar: FC<FilterBarProps> = (props) => {
       statsCheck
     );
     console.log(pokeCtx.pokemons);
-    props.applyFilter();
-  }
+
+  },[pokeCtx.pokemons])
 
   return (
     <div className="filterbar">

@@ -1,6 +1,6 @@
-import React, {  FC, useState, useMemo } from "react";
+import React, {  FC, useState, useCallback } from "react";
 import "./ListSimple.css";
-import PokeSimple from "./poke-simple/PokeSimple";
+import { PokeSimple } from "./poke-simple/PokeSimple";
 import { Pokemon } from "../../../../model/pokemonType";
 import { usePokeList } from "../../context/PokeListContext";
 
@@ -18,7 +18,7 @@ export const ListSimple: FC<ListSimpleProps> = (props) => {
     setOffset((old) => old + limit);
   }
 
-  const MemoPokeSimple = useMemo( ()=> PokeSimple, [])
+  const MemoPokeSimple = useCallback(PokeSimple, [])
 
   return (
     <div className="SimpleList">
@@ -37,3 +37,4 @@ export const ListSimple: FC<ListSimpleProps> = (props) => {
     </div>
   );
 }
+

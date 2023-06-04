@@ -13,7 +13,7 @@ interface StatsFilterBoxProps {
 }
 const statNamesList: string[] = ['hp','atk','def','satk','sdef','spd']
 
-const StatsFilterBox: FC<StatsFilterBoxProps> = (props) => {
+export const StatsFilterBox: FC<StatsFilterBoxProps> = (props) => {
   function updateStatsCheck(statName: string, keyName: string, value: number) {
     if (keyName === "min") {
       props.statsCheckProp[statName as keyof typeof props.statsCheckProp]!.min = value;
@@ -51,5 +51,3 @@ const StatsFilterBox: FC<StatsFilterBoxProps> = (props) => {
     </div>
   );
 };
-
-export default StatsFilterBox;
