@@ -14,8 +14,8 @@ const PokeCard: FC<PokeCardProps> = (props) => {
   return (
     <div className='bg' onClick={props.click}>
       <div className="card">
-        <img src={props.pokemon.sprites.other['official-artwork'].front_default} alt='thumb'></img>
 
+        <img src={props.pokemon.sprites.other['official-artwork'].front_default} alt='thumb'></img>
         <div className="details">
           <h1>{props.pokemon.name}</h1>
 

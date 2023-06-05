@@ -1,16 +1,18 @@
 @media (max-width: 600px) {
   .filterbar{
     position: fixed;
+    top: 0;
     z-index: 1;
+    box-shadow: 0 0 10rem rgba(0,0,0);
+    height: 100%;
   }
 }
 .filterbar{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
   width: 20rem;
-  height: 90dvh;
+  height: 87dvh;
   overflow-x: hidden;
   margin: 1rem;
   padding: 1rem;
